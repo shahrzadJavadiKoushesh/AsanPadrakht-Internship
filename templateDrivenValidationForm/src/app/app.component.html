@@ -1,0 +1,24 @@
+
+<div class="container">
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="name" ngModel required minlength="3" maxlength="20">
+
+    <label for="lastname">Last Name:</label>
+    <input type="text" id="lastname" name="lastname" placeholder="lastname" ngModel required minlength="5" maxlength="20">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="email" ngModel required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+    <div *ngIf="signupForm.value.email.touched && !signupForm.value.email.includes('@')" class="error">Enter a valid Email</div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="password" ngModel required>
+    <div *ngIf="signupForm.value.password.length < 4" class="error">Password must have 4 or more characters</div>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" ngModel required #confirmPassword="ngModel">
+    <div *ngIf="signupForm.value.password !== signupForm.value['confirmPassword']" class="error">Passwords do not match.</div>
+
+    <button type="submit" [disabled]="signupForm.invalid || (signupForm.controls['confirmPassword'].touched && signupForm.value.password !== signupForm.value['confirmPassword']) ||  signupForm.value.password.length < 4">Sign Up</button>
+  </form>
+</div>

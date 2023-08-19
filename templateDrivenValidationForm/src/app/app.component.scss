@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 0;
+    border: 1px solid black;
+    height: 80vh;
+    width: 60vh;
+    background-color: #76b5c5;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            text-align: center;
+            padding: 5px;
+        }
+
+        input {
+            border-radius: 5px;
+            border: none;
+        }
+
+
+        /* Style for enabled button */
+        button:enabled {
+            display: flex;
+            background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            margin-top: 20px;
+            text-decoration: none;
+            align-items: center;
+            padding: 19px 24px;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        // Style for disabled button
+
+        button:disabled {
+            display: flex;
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            opacity: 0.7;
+            white-space: nowrap;
+            margin-top: 20px;
+            text-decoration: none;
+            align-items: center;
+            padding: 19px 24px;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+
+        button:hover,
+        button:active {
+            cursor: pointer;
+
+            outline: 0;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    }
+}
