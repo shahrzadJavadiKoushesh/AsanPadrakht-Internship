@@ -10,6 +10,12 @@
     <!-- password -->
     <label for="">Password:</label>
     <input type="password" name="password" formControlName="password" placeholder="123abc">
+
+    <strength-checker
+        barLabel="Password Strength: "
+        [passwordToVerify]="contactForm.value.password">
+    </strength-checker>
+
     <!-- confirm password -->
     <label for="">Confirm Password:</label>
     <input type="password" name="cpassword" formControlName="confirmPassword">
