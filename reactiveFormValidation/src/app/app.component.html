@@ -1,0 +1,36 @@
+
+<div class="container">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <!-- name -->
+    <label>First name: </label>
+    <input type="text" name="firstname" formControlName="firstname" placeholder="shahrzad">
+    <!-- lastname -->
+    <label>Last name: </label>
+    <input type="text" name="lastname" formControlName="lastname" placeholder="Koushesh">
+    <!-- password -->
+    <label for="">Password:</label>
+    <input type="password" name="password" formControlName="password" placeholder="123abc">
+    <!-- confirm password -->
+    <label for="">Confirm Password:</label>
+    <input type="password" name="cpassword" formControlName="confirmPassword">
+    <div *ngIf="contactForm.value.password !== contactForm.value.confirmPassword" class="error">Passwords don't match
+    </div>
+    <!-- email -->
+    <label>Email: </label>
+    <input type="email" name="email" formControlName="email" placeholder="test@asanpardakht.com">
+    <div class="error"
+      *ngIf="contactForm.dirty && (!contactForm.value.email!.includes('asanpardakht.com') && !contactForm.value.email!.includes('asanpardakht.net') && !contactForm.value.email!.includes('asanpardakht.ir'))">
+      Your email must be in asanpardakht domain</div>
+    <!-- phone number -->
+    <div class="input-row" formArrayName="mobiles">
+      <div *ngFor="let mob of mobiles.controls;let i=index">
+        <label>Phone Number {{i+1}}:</label>
+        <input type="tel" [formControlName]="i">
+      </div>
+      <button type="button" (click)="addPhone()" [disabled]="mobiles.length >= 5">Add New Phone Number</button>
+      <div *ngIf="mobiles.length < 3" class="remaining-phones">Please at least add 3 phone numbers</div>
+    </div>
+    
+    <button type="submit" [disabled]="!contactForm.valid || mobiles.controls.length < 3  || this.contactForm.get(['mobiles', '0'])?.value?.length == 0 || this.contactForm.get(['mobiles', '1'])?.value?.length == 0 || this.contactForm.get(['mobiles', '2'])?.value?.length == 0 || this.contactForm.get(['mobiles', '3'])?.value?.length == 0 || this.contactForm.get(['mobiles', '4'])?.value?.length == 0" >Submit</button>
+  </form>
+</div>
