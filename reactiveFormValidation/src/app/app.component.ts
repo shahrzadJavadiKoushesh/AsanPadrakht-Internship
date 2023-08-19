@@ -21,7 +21,7 @@ export class AppComponent {
     mobiles: this.fb.array([
       this.fb.control('')
     ])
-  })
+  }, {validators: this.validateMobilesNotEmpty})
 
   get mobiles(){
     return this.contactForm.get('mobiles') as FormArray;
@@ -34,5 +34,11 @@ export class AppComponent {
   addPhone(){
     this.mobiles.push(this.fb.control(''))
   }
+
+  validateMobilesNotEmpty(control: AbstractControl): ValidationErrors | null {
+  const mobilesArray = control.get('mobiles') as FormArray;
+  const emptyMobile = mobilesArray.controls.some(phoneControl => !phoneControl.value);
+  return emptyMobile ? { mobilesNotEmpty: true } : null;
+}
 
 }

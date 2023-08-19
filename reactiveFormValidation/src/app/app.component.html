@@ -31,6 +31,6 @@
       <div *ngIf="mobiles.length < 3" class="remaining-phones">Please at least add 3 phone numbers</div>
     </div>
     
-    <button type="submit" [disabled]="!contactForm.valid || mobiles.controls.length < 3  || this.contactForm.get(['mobiles', '0'])?.value?.length == 0 || this.contactForm.get(['mobiles', '1'])?.value?.length == 0 || this.contactForm.get(['mobiles', '2'])?.value?.length == 0 || this.contactForm.get(['mobiles', '3'])?.value?.length == 0 || this.contactForm.get(['mobiles', '4'])?.value?.length == 0" >Submit</button>
+    <button type="submit" [disabled]="!contactForm.valid || mobiles.controls.length < 3" >Submit</button>
   </form>
 </div>
