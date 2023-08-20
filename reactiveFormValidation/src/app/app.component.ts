@@ -15,12 +15,13 @@ export class AppComponent {
     firstname: ['', Validators.required],
     lastname: [''],
     email: ['', [Validators.email, Validators.required, Validators.pattern(/.[@](asanpardakht.com|asanpardakht.net|asanpardakht.ir)/gm)]],
-    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[#@%&!]+/, { hasSpecialCharacters: true }),]],
+    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[#@%&!]+/, { hasSpecialCharacters: true })]],
     confirmPassword: ['', [Validators.minLength(8), this.validateStrongPassword]],
     mobiles: this.fb.array([
       this.fb.control('')
     ])
-  }, { validators: [this.validateMobilesNotEmpty, this.validateMobilesOnlyNumber]})
+  }, { validators: [this.validateMobilesNotEmpty, this.validateMobilesOnlyNumber, this.validatePasswordMatch]})
+
 
   get mobiles() {
     return this.contactForm.get('mobiles') as FormArray;
@@ -34,6 +35,18 @@ export class AppComponent {
     this.mobiles.push(this.fb.control(''))
   }
 
+  validatePasswordMatch(control: AbstractControl) {debugger
+    const password: string = control.get('password')!.value; // get password from our password form control
+    const confirmPassword: string = control.get('confirmPassword')!.value; // get password from our confirmPassword form control
+    // compare is the password math
+    if (password !== confirmPassword) {
+      // if they don't match, set an error in our confirmPassword form control
+      control.get('confirmPassword')!.setErrors({ NoPassswordMatch: true });
+    } else {
+      control.get('confirmPassword')!.setErrors(null);
+    }
+  }
+  
   validateMobilesNotEmpty(control: AbstractControl): ValidationErrors | null {
     const mobilesArray = control.get('mobiles') as FormArray;
     const emptyMobile = mobilesArray.controls.some(phoneControl => !phoneControl.value);
