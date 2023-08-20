@@ -10,16 +10,55 @@
     <label for="">Password:</label>
     <input type="password" name="password" formControlName="password" placeholder="123abc">
 
+    <label
+      [ngClass]="contactForm.controls['password'].hasError('required') || contactForm.controls['password'].hasError('minlength')  ? 'error' : 'success'">
+      <i>
+        {{ contactForm.controls['password'].hasError('required') ||
+        contactForm.controls['password'].hasError('minlength') ? '⛔' :
+        '✅' }}
+      </i>
+      Must be at least 8 characters!
+    </label>
+
     <label class="error" [ngClass]="contactForm.controls['password'].hasError('required') ||
     contactForm.controls['password'].hasError('hasNumber')  ? 'error' :
-    'success'"
-    >
-    <i class="material-icons">
-      {{ contactForm.controls['password'].hasError('required') ||
-      contactForm.controls['password'].hasError('hasNumber') ? '⛔' :
-      '✅' }}
-    </i>
+    'success'">
+      <i>
+        {{ contactForm.controls['password'].hasError('required') ||
+        contactForm.controls['password'].hasError('hasNumber') ? '⛔' :
+        '✅' }}
+      </i>
       Must have at least 1 number!
+    </label>
+
+    <label
+      [ngClass]="contactForm.controls['password'].hasError('required') || contactForm.controls['password'].hasError('hasCapitalCase')  ? 'error' : 'success'">
+      <i>
+        {{ contactForm.controls['password'].hasError('required') ||
+        contactForm.controls['password'].hasError('hasCapitalCase') ? '⛔' :
+        '✅' }}
+      </i>
+      Must contain at least 1 in Capital Case!
+    </label>
+
+    <label class="col"
+      [ngClass]="contactForm.controls['password'].hasError('required') || contactForm.controls['password'].hasError('hasSmallCase')  ? 'error' : 'success'">
+      <i>
+        {{ contactForm.controls['password'].hasError('required') ||
+        contactForm.controls['password'].hasError('hasSmallCase') ? '⛔' :
+        '✅' }}
+      </i>
+      Must contain at least 1 Letter in Small Case!
+    </label>
+
+    <label 
+      [ngClass]="contactForm.controls['password'].hasError('required') || contactForm.controls['password'].hasError('hasSpecialCharacters') ? 'error' : 'success'">
+      <i>
+        {{ contactForm.controls['password'].hasError('required') ||
+        contactForm.controls['password'].hasError('hasSpecialCharacters') ? '⛔' :
+        '✅' }}
+      </i>
+      Must contain at least 1 Special Character!
     </label>
 
     <strength-checker barLabel="Password Strength: " [passwordToVerify]="contactForm.value.password"></strength-checker>

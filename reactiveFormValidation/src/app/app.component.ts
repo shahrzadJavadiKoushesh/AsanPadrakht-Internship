@@ -15,7 +15,7 @@ export class AppComponent {
     firstname: ['', Validators.required],
     lastname: [''],
     email: ['', [Validators.email, Validators.required, Validators.pattern(/.[@](asanpardakht.com|asanpardakht.net|asanpardakht.ir)/gm)]],
-    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, {hasNumber: true}), this.patternValidator(/[A-Z]/, {hasCapitalCase: true}), this.patternValidator(/[a-z]/, {hasSmallCase: true}), this.patternValidator(/[ [!@#$%^&*()_+-=[]{};':"|,.<>/, { hasSpecialCharacters: true }),]],
+    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, {hasNumber: true}), this.patternValidator(/[A-Z]/, {hasCapitalCase: true}), this.patternValidator(/[a-z]/, {hasSmallCase: true}), this.patternValidator(/[#@%&!]+/, { hasSpecialCharacters: true }),]],
     confirmPassword: ['', [Validators.minLength(8), this.validateStrongPassword]],
     mobiles: this.fb.array([
       this.fb.control('')
@@ -47,7 +47,7 @@ export class AppComponent {
 
     const uppercaseRegex = /[A-Z]/;
     const lowercaseRegex = /[a-z]/;
-    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    const specialCharRegex = /[#@%&!]+/;
     const digitRegex = /\d/;
 
     const hasUppercase = uppercaseRegex.test(value);
