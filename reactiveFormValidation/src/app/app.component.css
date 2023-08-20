@@ -54,6 +54,10 @@ input,label {
     color: red;
 }
 
+.success{
+    color: forestgreen;
+}
+
 .remaining-phones{
     padding: 5px;
     margin-top: 5px;

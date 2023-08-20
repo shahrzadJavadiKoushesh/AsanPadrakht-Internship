@@ -1,4 +1,3 @@
-
 <div class="container">
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <!-- name -->
@@ -11,10 +10,19 @@
     <label for="">Password:</label>
     <input type="password" name="password" formControlName="password" placeholder="123abc">
 
-    <strength-checker
-        barLabel="Password Strength: "
-        [passwordToVerify]="contactForm.value.password">
-    </strength-checker>
+    <label class="error" [ngClass]="contactForm.controls['password'].hasError('required') ||
+    contactForm.controls['password'].hasError('hasNumber')  ? 'error' :
+    'success'"
+    >
+    <i class="material-icons">
+      {{ contactForm.controls['password'].hasError('required') ||
+      contactForm.controls['password'].hasError('hasNumber') ? '⛔' :
+      '✅' }}
+    </i>
+      Must have at least 1 number!
+    </label>
+
+    <strength-checker barLabel="Password Strength: " [passwordToVerify]="contactForm.value.password"></strength-checker>
 
     <!-- confirm password -->
     <label for="">Confirm Password:</label>
@@ -36,7 +44,7 @@
       <button type="button" (click)="addPhone()" [disabled]="mobiles.length >= 5">Add New Phone Number</button>
       <div *ngIf="mobiles.length < 3" class="remaining-phones">Please at least add 3 phone numbers</div>
     </div>
-    
-    <button type="submit" [disabled]="!contactForm.valid || mobiles.controls.length < 3" >Submit</button>
+
+    <button type="submit" [disabled]="!contactForm.valid || mobiles.controls.length < 3">Submit</button>
   </form>
 </div>

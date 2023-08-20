@@ -15,8 +15,8 @@ export class AppComponent {
     firstname: ['', Validators.required],
     lastname: [''],
     email: ['', [Validators.email, Validators.required, Validators.pattern(/.[@](asanpardakht.com|asanpardakht.net|asanpardakht.ir)/gm)]],
-    password: ['', [Validators.minLength(4), Validators.required, this.validateStrongPassword]],
-    confirmPassword: ['', [Validators.minLength(4), this.validateStrongPassword]],
+    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, {hasNumber: true}), this.patternValidator(/[A-Z]/, {hasCapitalCase: true}), this.patternValidator(/[a-z]/, {hasSmallCase: true}), this.patternValidator(/[ [!@#$%^&*()_+-=[]{};':"|,.<>/, { hasSpecialCharacters: true }),]],
+    confirmPassword: ['', [Validators.minLength(8), this.validateStrongPassword]],
     mobiles: this.fb.array([
       this.fb.control('')
     ])
@@ -58,6 +58,25 @@ export class AppComponent {
     const isStrong = hasUppercase && hasLowercase && hasSpecialChar && hasDigit;
 
     return isStrong ? null : { strongPassword: true };
+  }
 
+  patternValidator(regex: RegExp, error: ValidationErrors | null): ValidatorFn {
+    return (control: AbstractControl) => {
+      if (!control.value) {
+        // if control is empty return no error
+        return null;
+      }
+  
+      // test the value of the control against the regexp supplied
+      const valid = regex.test(control.value);
+  
+      // if true, return no error (no error), else return error passed in the second parameter
+      if (valid){
+        return null;
+      }
+      else{
+        return error;
+      }
+    };
   }
 }
