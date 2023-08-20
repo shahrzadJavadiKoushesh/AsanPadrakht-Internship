@@ -15,12 +15,12 @@ export class AppComponent {
     firstname: ['', Validators.required],
     lastname: [''],
     email: ['', [Validators.email, Validators.required, Validators.pattern(/.[@](asanpardakht.com|asanpardakht.net|asanpardakht.ir)/gm)]],
-    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, {hasNumber: true}), this.patternValidator(/[A-Z]/, {hasCapitalCase: true}), this.patternValidator(/[a-z]/, {hasSmallCase: true}), this.patternValidator(/[#@%&!]+/, { hasSpecialCharacters: true }),]],
+    password: ['', [Validators.minLength(8), Validators.required, this.validateStrongPassword, this.patternValidator(/\d/, { hasNumber: true }), this.patternValidator(/[A-Z]/, { hasCapitalCase: true }), this.patternValidator(/[a-z]/, { hasSmallCase: true }), this.patternValidator(/[#@%&!]+/, { hasSpecialCharacters: true }),]],
     confirmPassword: ['', [Validators.minLength(8), this.validateStrongPassword]],
     mobiles: this.fb.array([
       this.fb.control('')
     ])
-  }, { validators: this.validateMobilesNotEmpty })
+  }, { validators: [this.validateMobilesNotEmpty, this.validateMobilesOnlyNumber]})
 
   get mobiles() {
     return this.contactForm.get('mobiles') as FormArray;
@@ -39,6 +39,20 @@ export class AppComponent {
     const emptyMobile = mobilesArray.controls.some(phoneControl => !phoneControl.value);
     return emptyMobile ? { mobilesNotEmpty: true } : null;
   }
+
+  validateMobilesOnlyNumber(control: AbstractControl): ValidationErrors | null {
+    const mobilesArray = control.get('mobiles') as FormArray;
+    
+    for (let i = 0; i < mobilesArray.length; i++) {
+        const mobileControl = mobilesArray.at(i);
+        const mobileValue = mobileControl.value;
+        
+        if (isNaN(mobileValue)) {
+            return { onlyNumber: true };
+        }
+    }
+    return null;
+}
 
   validateStrongPassword(control: AbstractControl): ValidationErrors | null {
     const value: string = control.value;
@@ -63,18 +77,16 @@ export class AppComponent {
   patternValidator(regex: RegExp, error: ValidationErrors | null): ValidatorFn {
     return (control: AbstractControl) => {
       if (!control.value) {
-        // if control is empty return no error
         return null;
       }
-  
+
       // test the value of the control against the regexp supplied
       const valid = regex.test(control.value);
-  
-      // if true, return no error (no error), else return error passed in the second parameter
-      if (valid){
+
+      if (valid) {
         return null;
       }
-      else{
+      else {
         return error;
       }
     };
