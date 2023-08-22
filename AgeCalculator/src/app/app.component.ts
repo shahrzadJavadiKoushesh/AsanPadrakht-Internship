@@ -50,18 +50,18 @@ export class AppComponent implements OnInit {
     if (!res.year || !res.month || !res.date){
       return
     }
-
+    // current value of the form
     let resYear: number = res.year;
     let resMonth: number = res.month;
     let resDate: number = res.date;
 
-    if (year === null || year === undefined || month === null || month === undefined || date === null || date === undefined) {
+    if (!year || !month || !date) {
       return;
     }
 
-    console.log(year)
-    console.log(month)
-    console.log(date)
+    console.log(resYear)
+    console.log(resMonth)
+    console.log(resDate)
 
     if (year && +year > +jalaliDate.substring(0, 4)) {
       this.ageMessage = `Year can't be more than ${jalaliDate.substring(0, 4)}`;
@@ -81,17 +81,24 @@ export class AppComponent implements OnInit {
       return
     }
 
-    if (resMonth < 0 || (resMonth == 0 && resDate < 0)) {
+    // if (resMonth < 0 || (resMonth == 0 && resDate < 0)) {
+    //   resYear--;
+    //   resMonth += 12;
+    // }
+    // if (resDate < 0) {
+    //   resMonth--;
+    //   let daysInMonth = new Intl.DateTimeFormat('en-US-u-ca-persian', {day: 'numeric'}).format(d);
+    //   resDate += +daysInMonth;
+    // }
+    if (+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth > 0){
+      console.log("HJK")
+      console.log("RES:", resMonth)
       resYear--;
-      resMonth += 12;
+      resMonth = 12;
     }
-    if (resDate < 0) {
-      resMonth--;
-      let daysInMonth = new Intl.DateTimeFormat('en-US-u-ca-persian', {day: 'numeric'}).format(d);
-      resDate += +daysInMonth;
-    }
+    console.log("RES afer if: ", resMonth)
 
-    this.ageMessage = `You are ${+jalaliDate.substring(0, 4) - resYear - 1} years, ${+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth + 12} months, and ${+jalaliDate.substring(7) -resDate} days old`;
+    this.ageMessage = `You are ${+jalaliDate.substring(0, 4) - resYear -1 } years, ${+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth} months, and ${+jalaliDate.substring(7) - resDate} days old`;
     });
     
 
