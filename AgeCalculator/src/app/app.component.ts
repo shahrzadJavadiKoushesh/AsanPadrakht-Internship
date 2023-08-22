@@ -20,8 +20,15 @@ export class AppComponent {
     year: [null, [Validators.required, Validators.max(new Date().getFullYear())]],
   });
 
-  calculateAge() {
+  validateNumberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
 
+  calculateAge() {
     let today = new Date();
 
     console.log(today)
@@ -54,7 +61,7 @@ export class AppComponent {
       this.ageMessage = 'Invalid month';
       return;
     }
-    if (date && month && (+date < 1 || (+date > 30 && +month > 6 && +month < 12) || (+month == 12 && +!date > 29))) {
+    if (date && month && (+date < 1 || (+date > 30 && +month > 6 && +month < 12) || (+month === 12 && +!date > 29))) {
       this.ageMessage = 'Invalid date';
       return;
     }
