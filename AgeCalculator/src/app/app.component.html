@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Age Calculator</h1>
+    
+    <form [formGroup]="inputForm" (ngSubmit)="calculateAge()">
+        <!-- year -->
+        <label for="year">Year:</label>
+        <input id="year" type="text" formControlName="year" placeholder="1381">
+        <!-- month -->
+        <label for="month">Month:</label>
+        <input id="month" type="text" formControlName="month" placeholder="6">
+        <!-- date -->
+        <label for="date">Date:</label>
+        <input id="date" type="text" formControlName="date" placeholder="25">
+        
+        <button type="submit">Calculate</button>
+    </form>
+    <p>{{ageMessage}}</p>
+</div>
