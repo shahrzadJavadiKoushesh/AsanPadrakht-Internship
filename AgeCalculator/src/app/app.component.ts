@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ValidatorFn } from '@angular/forms';
 import { FormBuilder, FormGroup, AbstractControl, ValidationErrors, Validators } from '@angular/forms';
 import * as moment from 'jalali-moment';
@@ -8,17 +8,22 @@ import * as moment from 'jalali-moment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AgeCalculator';
 
-  ageMessage = '';
+  ageMessage: any;
 
   constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.detectChanges();
+  }
+  jalaliDate = moment().locale('fa').format('YYYY/M/D');
 
   inputForm = this.fb.group({
     date: [null, [Validators.required, Validators.min(1), Validators.max(31)]],
     month: [null, [Validators.required, Validators.min(1), Validators.max(12)]],
-    year: [null, [Validators.required, Validators.max(new Date().getFullYear())]],
+    year: [null, [Validators.required, Validators.max(+this.jalaliDate.substring(0,4))]],
   });
 
   validateNumberOnly(event): boolean {
@@ -29,14 +34,26 @@ export class AppComponent {
     return true;
   }
 
-  calculateAge() {
+  detectChanges() {
+
+    this.inputForm.valueChanges.subscribe(res => {
+      // Variable res holds the current value of the form
     let jalaliDate = moment().locale('fa').format('YYYY/M/D');
+    const d = new Date()
 
     console.log("jalali date:", jalaliDate);
 
     let year = this.inputForm.value.year;
     let month = this.inputForm.value.month;
     let date = this.inputForm.value.date;
+
+    if (!res.year || !res.month || !res.date){
+      return
+    }
+
+    let resYear: number = res.year;
+    let resMonth: number = res.month;
+    let resDate: number = res.date;
 
     if (year === null || year === undefined || month === null || month === undefined || date === null || date === undefined) {
       return;
@@ -46,38 +63,37 @@ export class AppComponent {
     console.log(month)
     console.log(date)
 
-    if (year && +year > +jalaliDate.substring(0,4)) {
-      this.ageMessage = `Year can't be more than ${jalaliDate.substring(0,4)}`;
+    if (year && +year > +jalaliDate.substring(0, 4)) {
+      this.ageMessage = `Year can't be more than ${jalaliDate.substring(0, 4)}`;
       return;
     }
     if (month && (+month < 1 || +month > 12)) {
-      this.ageMessage = 'Invalid month';
+      this.ageMessage = 'Month should be between 1 and 12';
       return;
     }
-    if (date && month && (+date < 1 || (+date > 30 && +month > 6 && +month < 12) || (+month == 12 && +date > 29))) {
-      this.ageMessage = 'Invalid date';
+    if (date && month && (+date < 1 ||(+month <= 6 && date > 31) || (+date > 30 && +month > 6 && +month < 12) || (+month == 12 && +date > 29))) {
+      this.ageMessage = 'Invalid date for this month';
       return;
     }
 
-    // Calculate the age in years, months, and days
-    let ageYears = +jalaliDate.substring(0, 4) - +year;
-    let ageMonths = +jalaliDate.substring(5,6) - +month + 1;
-    let ageDays = +jalaliDate.substring(7) - +date;
-    console.log("years: ", ageYears)
-    console.log("months: ", ageMonths)
-    console.log("days: ", ageDays)
 
-    if (ageMonths < 0 || (ageMonths == 0 && ageDays < 0)) {
-      ageYears--;
-      ageMonths += 12;
-    }
-    if (ageDays < 0) {
-      ageMonths--;
-      let daysInMonth = new Date(+year, +month, 0).getDate();
-      ageDays += daysInMonth;
+    if (!resYear || !resMonth || !resDate){
+      return
     }
 
-    this.ageMessage = `You are ${ageYears} years, ${ageMonths} months, and ${ageDays} days old`;
+    if (resMonth < 0 || (resMonth == 0 && resDate < 0)) {
+      resYear--;
+      resMonth += 12;
+    }
+    if (resDate < 0) {
+      resMonth--;
+      let daysInMonth = new Intl.DateTimeFormat('en-US-u-ca-persian', {day: 'numeric'}).format(d);
+      resDate += +daysInMonth;
+    }
+
+    this.ageMessage = `You are ${+jalaliDate.substring(0, 4) - resYear - 1} years, ${+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth + 12} months, and ${+jalaliDate.substring(7) -resDate} days old`;
+    });
+    
 
   }
 
