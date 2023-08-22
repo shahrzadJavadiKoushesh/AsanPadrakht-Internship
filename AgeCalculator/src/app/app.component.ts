@@ -34,6 +34,10 @@ export class AppComponent {
     let month = this.inputForm.value.month;
     let date = this.inputForm.value.date;
 
+    if (year===null || year === undefined || month === null || month === undefined || date === null || date === undefined){
+      return;
+    }
+
     console.log(typeof (year))
     console.log(typeof (month))
     console.log(typeof (date))
@@ -56,16 +60,12 @@ export class AppComponent {
     }
 
     // Calculate the age in years, months, and days
-    let ageYears = today.getFullYear() - +!year;
-    let ageMonths = today.getMonth() - +!month + 1;
-    let ageDays = today.getDate() - +!date;
+    let ageYears = today.getFullYear() - +year;
+    let ageMonths = today.getMonth() - +month + 1;
+    let ageDays = today.getDate() - +date;
     console.log("years: ", ageYears)
     console.log("months: ", ageMonths)
     console.log("days: ", ageDays)
-
-    let timeDiff = Math.abs(Date.now() - today.getTime());
-    let age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
-
 
     if (ageMonths < 0 || (ageMonths == 0 && ageDays < 0)) {
       ageYears--;

@@ -12,7 +12,7 @@
         <label for="date">Date:</label>
         <input id="date" type="text" formControlName="date" placeholder="25">
         
-        <button type="submit">Calculate</button>
+        <button type="submit" [disabled]="!inputForm.valid">Calculate</button>
     </form>
     <p>{{ageMessage}}</p>
 </div>
