@@ -81,24 +81,29 @@ export class AppComponent implements OnInit {
       return
     }
 
-    // if (resMonth < 0 || (resMonth == 0 && resDate < 0)) {
-    //   resYear--;
-    //   resMonth += 12;
-    // }
-    // if (resDate < 0) {
-    //   resMonth--;
-    //   let daysInMonth = new Intl.DateTimeFormat('en-US-u-ca-persian', {day: 'numeric'}).format(d);
-    //   resDate += +daysInMonth;
-    // }
-    if (+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth > 0){
-      console.log("HJK")
-      console.log("RES:", resMonth)
-      resYear--;
-      resMonth = 12;
-    }
-    console.log("RES afer if: ", resMonth)
+    resYear = +jalaliDate.substring(0, 4) - resYear
+    resMonth = +new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth
+    resDate = +new Intl.DateTimeFormat('en-US-u-ca-persian', {day: 'numeric'}).format(d) - resDate
 
-    this.ageMessage = `You are ${+jalaliDate.substring(0, 4) - resYear -1 } years, ${+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) - resMonth} months, and ${+jalaliDate.substring(7) - resDate} days old`;
+    if (resMonth < 0){
+      resYear--;
+      resMonth+=12
+    }
+
+    if (resDate < 0){
+      if (+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) <= 6){
+        resDate += 31;
+      }
+      else if (+new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'numeric'}).format(d) === 12){
+        resDate += 29;
+      }
+      else{
+        resDate += 30;
+      }
+      resMonth--;
+    }
+
+    this.ageMessage = `You are ${resYear} years, ${resMonth} months, and ${resDate} days old`;
     });
     
 
