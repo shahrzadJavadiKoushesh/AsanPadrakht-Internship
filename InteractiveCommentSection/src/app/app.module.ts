@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
+import { ReplyFormComponent } from './reply-form/reply-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentListComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    ReplyFormComponent
   ],
   imports: [
     BrowserModule,
