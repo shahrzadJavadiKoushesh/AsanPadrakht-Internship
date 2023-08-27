@@ -12,7 +12,7 @@ export class AppComponent {
     "currentUser": {
       "image": { 
         "png": "./images/avatars/image-juliusomo.png",
-        "webp": "images/avatars/image-juliusomo.webp"
+        "webp": "../assets/images/avatars/image-juliusomo.webp"
       },
       "username": "juliusomo"
     },
@@ -25,7 +25,7 @@ export class AppComponent {
         "user": {
           "image": { 
             "png": "./images/avatars/image-amyrobson.png",
-            "webp": "./images/avatars/image-amyrobson.webp"
+            "webp": "../assets/images/avatars/image-amyrobson.webp"
           },
           "username": "amyrobson"
         },
@@ -39,7 +39,7 @@ export class AppComponent {
         "user": {
           "image": { 
             "png": "./images/avatars/image-maxblagun.png",
-            "webp": "./images/avatars/image-maxblagun.webp"
+            "webp": "../assets/images/avatars/image-maxblagun.webp"
           },
           "username": "maxblagun"
         },
@@ -53,7 +53,7 @@ export class AppComponent {
             "user": {
               "image": { 
                 "png": "./images/avatars/image-ramsesmiron.png",
-                "webp": "./images/avatars/image-ramsesmiron.webp"
+                "webp": "../assets/images/avatars/image-ramsesmiron.webp"
               },
               "username": "ramsesmiron"
             }
@@ -67,7 +67,7 @@ export class AppComponent {
             "user": {
               "image": { 
                 "png": "./images/avatars/image-juliusomo.png",
-                "webp": "./images/avatars/image-juliusomo.webp"
+                "webp": "../assets/images/avatars/image-juliusomo.webp"
               },
               "username": "juliusomo"
             }
