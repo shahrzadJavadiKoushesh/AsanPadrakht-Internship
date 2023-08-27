@@ -1,0 +1,40 @@
+<div class="comments">
+    <div *ngFor="let comment of data.comments" class="comment">
+        <div class="comment-header">
+            <div class="comment-score">
+                <span>+</span>
+                <i class="fas fa-thumbs-up"></i>
+                <span>{{comment.score}}</span>
+                <span>-</span>
+            </div>
+            <div class="comment-right-part">
+                <img [src]="comment.user.image.webp" alt="user image" class="comment-user-image">
+                <div class="comment-user-info">
+                    <span class="comment-username">{{comment.user.username}}</span>
+                    <span class="comment-created-at">{{comment.createdAt}}</span>
+                </div>
+                <div class="comment-content">
+                    {{comment.content}}
+                </div>
+            </div>
+        </div>
+        <div *ngIf="comment.replies.length > 0" class="comment-replies">
+            <div *ngFor="let reply of comment.replies" class="reply">
+                <div class="reply-header">
+                    <img [src]="reply.user.image.webp" alt="user image" class="reply-user-image">
+                    <div class="reply-user-info">
+                        <span class="reply-username">{{reply.user.username}}</span>
+                        <span class="reply-created-at">{{reply.createdAt}}</span>
+                    </div>
+                    <div class="reply-score">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>{{reply.score}}</span>
+                    </div>
+                </div>
+                <div class="reply-content">
+                    Reply: {{reply.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

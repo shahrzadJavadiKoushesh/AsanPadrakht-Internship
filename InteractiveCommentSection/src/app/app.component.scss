@@ -1,0 +1,15 @@
+.comment-header{
+    display: flex;
+
+    .comment-score{
+        display: flex;
+        flex-direction: column;
+        width: 10px;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #d3d8db;
+        padding: 8px;
+        margin: 10px;
+        border-radius: 5px;
+    }
+}
