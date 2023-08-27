@@ -46,10 +46,9 @@
                             {{reply.content}}
                         </div>
                     </div>
-                </div>
-                
+                </div>  
             </div>
         </div>
     </div>
-    <app-add-comment></app-add-comment>
+    <app-add-comment  (buttonWasClicked)="SendCommentWasClicked($event)"></app-add-comment>
 </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter , Input} from '@angular/core';
+import { AddCommentComponent } from './add-comment/add-comment.component';
 
 @Component({
   selector: 'app-root',
@@ -74,7 +75,24 @@ export class AppComponent {
           }
         ]
       },
-      
     ]
+  }
+
+  SendCommentWasClicked(newComment: {
+    "id": number,
+    "content": string,
+    "createdAt": string,
+    "score": number,
+    "user": {
+      "image": { 
+        "png": string,
+        "webp": string
+      },
+      "username": string
+    },
+    "replies": []
+  })
+  {
+    this.data.comments.push(newComment);
   }
 }
