@@ -1,8 +1,14 @@
-import { Reply } from "./reply.model";
-
-
-export class Comment {
-    id!: number;
-    content!: string;
-    replies!: Reply[];
+interface Comment {
+  id: number;
+  content: string;
+  createdAt: string;
+  score: number;
+  user: {
+  image: {
+  png: string;
+  webp: string;
+  };
+  username: string;
+  };
+  replies: Comment[];
   }

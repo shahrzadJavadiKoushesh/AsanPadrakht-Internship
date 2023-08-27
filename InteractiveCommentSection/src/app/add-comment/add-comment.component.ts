@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-comment',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AddCommentComponent {
 
+  constructor(private fb: FormBuilder){}
+
+  commentInput = this.fb.group({
+    comment: [null, [Validators.required]]
+  })
+
+  addComment(){
+    console.log("SEND COMMENT");
+
+    // comment is what user has entered
+    let comment = this.commentInput.value.comment;
+    console.log(comment);
+    this.commentInput.reset()
+  }
 }
