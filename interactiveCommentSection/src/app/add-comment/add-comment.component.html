@@ -1,0 +1,7 @@
+<div class="comment">
+    <img src="../../assets/images/avatars/image-juliusomo.webp" alt="">
+    <form [formGroup]="commentInput">
+        <input type="text" placeholder="Add a comment ..." formControlName="comment">
+    </form>
+    <button (click)="addComment()" [disabled]="!commentInput.valid">SEND</button>
+</div>
