@@ -1,7 +1,0 @@
-<!-- comment-list.component.html -->
-<div>
-    <h2>Comments</h2>
-    <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
-    <app-comment-form (submitComment)="createComment($event)"></app-comment-form>
-  </div>
-  
