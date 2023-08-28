@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter , Input} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 
 @Component({

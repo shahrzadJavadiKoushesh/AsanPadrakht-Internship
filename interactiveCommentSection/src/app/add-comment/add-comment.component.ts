@@ -14,13 +14,15 @@ export class AddCommentComponent {
   constructor(private fb: FormBuilder){}
 
   commentInput = this.fb.group({
-    comment: [null, [Validators.required]]
+    comment: [null, [Validators.required]],
+    parentId: [null],
   })
 
   addComment(){
     console.log("comment sent");
     // comment is what user has entered
     let comment = this.commentInput.value.comment;
+    const parentId = this.commentInput.value.parentId;
     console.log(comment);
     const newComment = {
       "id": this.data.comments.length + 1,
@@ -36,9 +38,32 @@ export class AddCommentComponent {
       },
       "replies": []
     }
-    this.data.comments.push(newComment);
+    if (parentId) {
+      // Find the comment or reply with the matching id and add the new reply
+      const parent = this.findCommentOrReply(this.data, parentId);
+      if (parent) {
+        parent.replies.push(newComment);
+      }
+    } else {
+      // Add a new comment
+      this.data.comments.push(newComment);
+    }
     console.log(this.data)
     this.commentAdded.emit(this.data);
-    this.commentInput.reset();
+    this.commentInput.reset();    
+  }
+  
+  findCommentOrReply(item: any, id: number): any {
+    if (item.id === id) {
+      return item;
+    } else if (item.replies && item.replies.length > 0) {
+      for (const reply of item.replies) {
+        const found = this.findCommentOrReply(reply, id);
+        if (found) {
+          return found;
+        }
+      }
+    }
+    return null;
   }
 }
