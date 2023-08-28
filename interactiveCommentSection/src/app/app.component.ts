@@ -77,4 +77,8 @@ export class AppComponent {
       },
     ]
   }
+
+  updateData(updatedData: any){
+    this.data = updatedData;
+  }
 }
