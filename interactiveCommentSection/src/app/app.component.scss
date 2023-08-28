@@ -26,6 +26,7 @@
             }
 
             .comment-right-part {
+                width: 100%;
                 .top {
                     display: flex;
                     justify-content: space-between;
@@ -38,7 +39,7 @@
                         justify-content: space-around;
                         width: 30%;
 
-                        // background-color: red;
+                        // background-color: blue;
                         .comment-created-at {
                             color: #ccc6c6;
                         }
@@ -57,7 +58,7 @@
 
                 .comment-content {
                     width: 80%;
-                    margin-left: 20px;
+                    margin-left: 40px;
                 }
             }
         }
