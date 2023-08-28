@@ -77,22 +77,4 @@ export class AppComponent {
       },
     ]
   }
-
-  SendCommentWasClicked(newComment: {
-    "id": number,
-    "content": string,
-    "createdAt": string,
-    "score": number,
-    "user": {
-      "image": { 
-        "png": string,
-        "webp": string
-      },
-      "username": string
-    },
-    "replies": []
-  })
-  {
-    this.data.comments.push(newComment);
-  }
 }
