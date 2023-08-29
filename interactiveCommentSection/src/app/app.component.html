@@ -14,7 +14,7 @@
                         <span class="comment-username"> {{comment.user.username}} </span>
                         <span class="comment-created-at">{{comment.createdAt}}</span>
                     </div>
-                    <div class="reply-icon" mat-raised-button (click)="addReply(i)">
+                    <div class="reply-icon" mat-raised-button (click)="addReply(comment)">
                         <img src="../assets/images/icon-reply.svg" alt="reply">
                         Reply
                     </div>
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div *ngIf="showReply">
-        <app-reply [data]="data"></app-reply>
+        <app-reply [data]="data" (replyAdded)="addReplyEmmitdByChild($event)"></app-reply>
     </div>
     <app-add-comment [data]="data"></app-add-comment>
 </div>

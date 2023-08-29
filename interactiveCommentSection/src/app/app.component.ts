@@ -1,7 +1,4 @@
 import { Component, ViewChild} from '@angular/core';
-import { AddCommentComponent } from './add-comment/add-comment.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
 
 @Component({
   selector: 'app-root',
@@ -12,7 +9,8 @@ export class AppComponent {
   title = 'InteractiveCommentSection';
 
   showReply: boolean = false;
-  
+  selectedComment : Record<string, any> = {};
+
   data = {
     "currentUser": {
       "image": { 
@@ -82,12 +80,18 @@ export class AppComponent {
     ]
   }
 
-  updateData(updatedData: any){
-    this.data = updatedData;
+  addReply(comment: any){
+    this.selectedComment = comment;
+    // console.log(`reply for comment ${comment} is clicked`);
+    this.showReply = true;
+    console.log(this.showReply)
   }
 
-  addReply(i: number){
-    console.log(`reply for comment ${i} is clicked`);
-    this.showReply = !this.showReply;
+  addReplyEmmitdByChild(vale: Record<string, any>) {debugger
+    if(this.selectedComment){
+    this.selectedComment['replies'] = [...this.selectedComment['replies'] , vale]
+    }
+    this.showReply = false;
   }
+
 }

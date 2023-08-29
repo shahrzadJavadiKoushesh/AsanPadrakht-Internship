@@ -9,7 +9,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ReplyComponent {
 
   @Input() data: any;
+  @Input() selectedCommentIndex!: number;
   @Output() replyAdded = new EventEmitter<any>(); 
+
+  @Input() showReply!: boolean;
+  @Output() changeShowReply = new EventEmitter<boolean>();
+
+
 
   constructor(private fb: FormBuilder) { }
 
@@ -23,7 +29,7 @@ export class ReplyComponent {
     let reply = this.replyInput.value.reply;
     console.log(reply);
     const newReply = {
-      "id": this.data.comments[0].replies.length + 1,
+      "id": Math.floor(Math.random() * (100 - 5 + 1) + 5),
       "content": reply,
       "createdAt": "just now",
       "score": Math.floor(Math.random() * (100 - 5 + 1) + 5),
@@ -35,11 +41,16 @@ export class ReplyComponent {
         "username": this.data.currentUser.username
       },
     }
-    console.log(newReply);
-    this.data.comments[0].replies.push(newReply);
+    // this.data.comments[1].replies.push(newReply);
     console.log(this.data)
-    this.replyAdded.emit(this.data);
-    this.replyInput.reset();
+    this.replyAdded.emit(newReply);
+
+    // console.log("before: " + this.showReply)
+    // this.showReply = false;
+    // console.log("after: " + this.showReply)
+
+    // this.changeShowReply.emit(this.showReply);
+    // this.replyInput.reset();
     
   }
 
