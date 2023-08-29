@@ -109,23 +109,13 @@ export class AppComponent {
     this.data.comments.push(value)
   }
 
-  addOne(comment: any) {
-    if (this.data.comments.includes(comment)) {
-      this.data.comments[comment.id - 1].score++;
-    }
-    else {
-      comment.score++;
-    }
-  }
-
-  minusOne(comment: any) {
-    if (this.data.comments.includes(comment)) {
-      if (this.data.comments[comment.id - 1].score > 0)
-        this.data.comments[comment.id - 1].score--;
+  changeScroe(comment: any, isPlus: boolean){
+    if (isPlus){
+      comment.score++
     }
     else{
       if (comment.score > 0)
-        comment.score--;
+        comment.score--
     }
   }
 

@@ -2,9 +2,9 @@
     <div *ngFor="let comment of data.comments;" class="comment">
         <div class="comment-header">
             <div class="comment-score">
-                <img src="../assets/images/icon-plus.svg" alt="" (click)="addOne(comment)" class="plusOne">
+                <img src="../assets/images/icon-plus.svg" alt="" (click)="changeScroe(comment, true)" class="plusOne">
                 <span class="score">{{comment.score}}</span>
-                <img src="../assets/images/icon-minus.svg" alt="" (click)="minusOne(comment)"  class="minusOne">
+                <img src="../assets/images/icon-minus.svg" alt="" (click)="changeScroe(comment, false)"  class="minusOne">
             </div>
             <div class="comment-right-part">
                 <div class="top">
@@ -27,10 +27,10 @@
             <div *ngFor="let reply of comment.replies" class="reply comment">
                 <div class="reply-header">
                     <div class="comment-score">
-                        <img src="../assets/images/icon-plus.svg" alt="" (click)="addOne(reply)" class="plusOne">
+                        <img src="../assets/images/icon-plus.svg" alt="" (click)="changeScroe(reply, true)" class="plusOne">
                         <i class="fas fa-thumbs-up"></i>
                         <span class="score">{{reply.score}}</span>
-                        <img src="../assets/images/icon-minus.svg" alt="" (click)="minusOne(reply)" class="minusOne">
+                        <img src="../assets/images/icon-minus.svg" alt="" (click)="changeScroe(reply, false)" class="minusOne">
                     </div>
 
                     <div class="comment-right-part">
