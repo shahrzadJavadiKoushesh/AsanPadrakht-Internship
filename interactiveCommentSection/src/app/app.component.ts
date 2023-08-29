@@ -82,16 +82,32 @@ export class AppComponent {
 
   addReply(comment: any){
     this.selectedComment = comment;
-    // console.log(`reply for comment ${comment} is clicked`);
     this.showReply = true;
     console.log(this.showReply)
   }
 
-  addReplyEmmitdByChild(vale: Record<string, any>) {debugger
+  addReplyEmmitdByChild(value: Record<string, any>) {
     if(this.selectedComment){
-    this.selectedComment['replies'] = [...this.selectedComment['replies'] , vale]
+    this.selectedComment['replies'] = [...this.selectedComment['replies'] , value]
     }
     this.showReply = false;
+  }
+
+  addCommentEmittedByChild(value: {
+    "id": number,
+        "content": string,
+        "createdAt": string,
+        "score": number,
+        "user": {
+          "image": { 
+            "png": string,
+            "webp": string
+          },
+          "username": string
+        },
+        "replies": []
+  }){
+    this.data.comments.push(value)
   }
 
 }

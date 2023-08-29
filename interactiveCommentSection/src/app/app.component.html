@@ -1,5 +1,5 @@
 <div class="comments">
-    <div *ngFor="let comment of data.comments; let i = index" class="comment">
+    <div *ngFor="let comment of data.comments;" class="comment">
         <div class="comment-header">
             <div class="comment-score">
                 <img src="../assets/images/icon-plus.svg" alt="">
@@ -42,6 +42,7 @@
                                 <span class="comment-created-at">{{reply.createdAt}}</span>
                             </div>
                         </div>
+                        
                         <div class="comment-content">
                             {{reply.content}}
                         </div>
@@ -53,5 +54,5 @@
     <div *ngIf="showReply">
         <app-reply [data]="data" (replyAdded)="addReplyEmmitdByChild($event)"></app-reply>
     </div>
-    <app-add-comment [data]="data"></app-add-comment>
+    <app-add-comment [data]="data" (commentAdded)="addCommentEmittedByChild($event)"></app-add-comment>
 </div>

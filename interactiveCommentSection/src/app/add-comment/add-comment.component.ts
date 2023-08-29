@@ -38,32 +38,8 @@ export class AddCommentComponent {
       },
       "replies": []
     }
-    if (parentId) {
-      // Find the comment or reply with the matching id and add the new reply
-      const parent = this.findCommentOrReply(this.data, parentId);
-      if (parent) {
-        parent.replies.push(newComment);
-      }
-    } else {
-      // Add a new comment
-      this.data.comments.push(newComment);
-    }
     console.log(this.data)
-    this.commentAdded.emit(this.data);
+    this.commentAdded.emit(newComment);
     this.commentInput.reset();    
-  }
-  
-  findCommentOrReply(item: any, id: number): any {
-    if (item.id === id) {
-      return item;
-    } else if (item.replies && item.replies.length > 0) {
-      for (const reply of item.replies) {
-        const found = this.findCommentOrReply(reply, id);
-        if (found) {
-          return found;
-        }
-      }
-    }
-    return null;
   }
 }

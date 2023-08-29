@@ -12,11 +12,6 @@ export class ReplyComponent {
   @Input() selectedCommentIndex!: number;
   @Output() replyAdded = new EventEmitter<any>(); 
 
-  @Input() showReply!: boolean;
-  @Output() changeShowReply = new EventEmitter<boolean>();
-
-
-
   constructor(private fb: FormBuilder) { }
 
   replyInput = this.fb.group({
@@ -41,18 +36,7 @@ export class ReplyComponent {
         "username": this.data.currentUser.username
       },
     }
-    // this.data.comments[1].replies.push(newReply);
     console.log(this.data)
     this.replyAdded.emit(newReply);
-
-    // console.log("before: " + this.showReply)
-    // this.showReply = false;
-    // console.log("after: " + this.showReply)
-
-    // this.changeShowReply.emit(this.showReply);
-    // this.replyInput.reset();
-    
   }
-
-
 }
