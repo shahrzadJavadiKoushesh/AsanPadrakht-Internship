@@ -41,6 +41,10 @@
                                 <span class="comment-username">{{reply.user.username}} </span>
                                 <span class="comment-created-at">{{reply.createdAt}}</span>
                             </div>
+                            <div class="reply-icon" mat-raised-button (click)="addReply(comment)">
+                                <img src="../assets/images/icon-reply.svg" alt="reply">
+                                Reply
+                            </div>
                         </div>
                         
                         <div class="comment-content">

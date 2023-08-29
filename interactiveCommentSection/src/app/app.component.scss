@@ -68,11 +68,13 @@
     .reply {
         margin-left: 40px;
         margin-bottom: 10px;
-
+        width: 96%;
         .reply-header {
             display: flex;
+            // background-color: rebeccapurple;
             .comment-right-part {
                 width: 100%;
+                // background-color: #6e49e6;
                 .top {
                     display: flex;
                     justify-content: space-between;
@@ -162,6 +164,7 @@
             .reply-icon {
                 color: #6e49e6;
                 padding: 10px;
+                float: right;
             }
 
             .reply-icon:hover {
