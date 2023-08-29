@@ -1,5 +1,6 @@
 import { Component, ViewChild} from '@angular/core';
 import { AddCommentComponent } from './add-comment/add-comment.component';
+// import {MatDialog} from mat;
 
 @Component({
   selector: 'app-root',
@@ -80,5 +81,9 @@ export class AppComponent {
 
   updateData(updatedData: any){
     this.data = updatedData;
+  }
+
+  addReply(){
+    console.log("reply clicked")
   }
 }

@@ -1,54 +1,54 @@
 <div class="comments">
-  <div *ngFor="let comment of data.comments" class="comment">
-      <div class="comment-header">
-          <div class="comment-score">
-              <img src="../assets/images/icon-plus.svg" alt="">
-              <i class="fas fa-thumbs-up"></i>
-              <span class="score">{{comment.score}}</span>
-              <img src="../assets/images/icon-minus.svg" alt="">
-          </div>
-          <div class="comment-right-part">
-              <div class="top">
-                  <div class="comment-user-info">
-                      <img [src]="comment.user.image.webp" alt="user image" class="comment-user-image">
-                      <span class="comment-username"> {{comment.user.username}} </span>
-                      <span class="comment-created-at">{{comment.createdAt}}</span>
-                  </div>
-                  <div class="reply-icon">
-                      <img src="../assets/images/icon-reply.svg" alt="reply">
-                      Reply
-                  </div>
-              </div>
-              <div class="comment-content">
-                  {{comment.content}}
-              </div>
-          </div>
-      </div>
-      <div *ngIf="comment.replies.length > 0">
-          <div *ngFor="let reply of comment.replies" class="reply comment">
-              <div class="reply-header">
-                  <div class="comment-score">
-                      <img src="../assets/images/icon-plus.svg" alt="">
-                      <i class="fas fa-thumbs-up"></i>
-                      <span>{{reply.score}}</span>
-                      <img src="../assets/images/icon-minus.svg" alt="">
-                  </div>
+    <div *ngFor="let comment of data.comments" class="comment">
+        <div class="comment-header">
+            <div class="comment-score">
+                <img src="../assets/images/icon-plus.svg" alt="">
+                <i class="fas fa-thumbs-up"></i>
+                <span class="score">{{comment.score}}</span>
+                <img src="../assets/images/icon-minus.svg" alt="">
+            </div>
+            <div class="comment-right-part">
+                <div class="top">
+                    <div class="comment-user-info">
+                        <img [src]="comment.user.image.webp" alt="user image" class="comment-user-image">
+                        <span class="comment-username"> {{comment.user.username}} </span>
+                        <span class="comment-created-at">{{comment.createdAt}}</span>
+                    </div>
+                    <div class="reply-icon" mat-raised-button (click)="addReply()">
+                        <img src="../assets/images/icon-reply.svg" alt="reply">
+                        Reply
+                    </div>
+                </div>
+                <div class="comment-content">
+                    {{comment.content}}
+                </div>
+            </div>
+        </div>
+        <div *ngIf="comment.replies.length > 0">
+            <div *ngFor="let reply of comment.replies" class="reply comment">
+                <div class="reply-header">
+                    <div class="comment-score">
+                        <img src="../assets/images/icon-plus.svg" alt="">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>{{reply.score}}</span>
+                        <img src="../assets/images/icon-minus.svg" alt="">
+                    </div>
 
-                  <div class="comment-right-part">
-                      <div class="top">
-                          <div class="reply-user-info">
-                              <img [src]="reply.user.image.webp" alt="user image" class="reply-user-image">
-                              <span class="comment-username">{{reply.user.username}} </span>
-                              <span class="comment-created-at">{{reply.createdAt}}</span>
-                          </div>
-                      </div>
-                      <div class="comment-content">
-                          {{reply.content}}
-                      </div>
-                  </div>
-              </div>  
-          </div>
-      </div>
-  </div>
-  <app-add-comment [data]="data"></app-add-comment>
+                    <div class="comment-right-part">
+                        <div class="top">
+                            <div class="reply-user-info">
+                                <img [src]="reply.user.image.webp" alt="user image" class="reply-user-image">
+                                <span class="comment-username">{{reply.user.username}} </span>
+                                <span class="comment-created-at">{{reply.createdAt}}</span>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            {{reply.content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-add-comment [data]="data"></app-add-comment>
 </div>
