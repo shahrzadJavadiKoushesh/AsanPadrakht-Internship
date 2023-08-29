@@ -1,6 +1,7 @@
 import { Component, ViewChild} from '@angular/core';
 import { AddCommentComponent } from './add-comment/add-comment.component';
-// import {MatDialog} from mat;
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { AddCommentComponent } from './add-comment/add-comment.component';
 })
 export class AppComponent {
   title = 'InteractiveCommentSection';
+
+  showReply: boolean = false;
   
   data = {
     "currentUser": {
@@ -84,6 +87,7 @@ export class AppComponent {
   }
 
   addReply(){
-    console.log("reply clicked")
+    console.log("reply clicked");
+    this.showReply = !this.showReply;
   }
 }
