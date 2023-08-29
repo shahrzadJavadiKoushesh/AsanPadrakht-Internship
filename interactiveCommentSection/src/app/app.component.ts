@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,11 @@ export class AppComponent {
   title = 'InteractiveCommentSection';
 
   showReply: boolean = false;
-  selectedComment : Record<string, any> = {};
+  selectedComment: Record<string, any> = {};
 
   data = {
     "currentUser": {
-      "image": { 
+      "image": {
         "png": "./images/avatars/image-juliusomo.png",
         "webp": "../assets/images/avatars/image-juliusomo.webp"
       },
@@ -26,7 +26,7 @@ export class AppComponent {
         "createdAt": "1 month ago",
         "score": 12,
         "user": {
-          "image": { 
+          "image": {
             "png": "./images/avatars/image-amyrobson.png",
             "webp": "../assets/images/avatars/image-amyrobson.webp"
           },
@@ -40,7 +40,7 @@ export class AppComponent {
         "createdAt": "2 weeks ago",
         "score": 5,
         "user": {
-          "image": { 
+          "image": {
             "png": "./images/avatars/image-maxblagun.png",
             "webp": "../assets/images/avatars/image-maxblagun.webp"
           },
@@ -54,7 +54,7 @@ export class AppComponent {
             "score": 4,
             "replyingTo": "maxblagun",
             "user": {
-              "image": { 
+              "image": {
                 "png": "./images/avatars/image-ramsesmiron.png",
                 "webp": "../assets/images/avatars/image-ramsesmiron.webp"
               },
@@ -68,7 +68,7 @@ export class AppComponent {
             "score": 2,
             "replyingTo": "ramsesmiron",
             "user": {
-              "image": { 
+              "image": {
                 "png": "./images/avatars/image-juliusomo.png",
                 "webp": "../assets/images/avatars/image-juliusomo.webp"
               },
@@ -80,34 +80,53 @@ export class AppComponent {
     ]
   }
 
-  addReply(comment: any){
+  addReply(comment: any) {
     this.selectedComment = comment;
     this.showReply = true;
-    console.log(this.showReply)
   }
 
   addReplyEmmitdByChild(value: Record<string, any>) {
-    if(this.selectedComment){
-    this.selectedComment['replies'] = [...this.selectedComment['replies'] , value]
+    if (this.selectedComment) {
+      this.selectedComment['replies'] = [...this.selectedComment['replies'], value]
     }
     this.showReply = false;
   }
 
   addCommentEmittedByChild(value: {
     "id": number,
-        "content": string,
-        "createdAt": string,
-        "score": number,
-        "user": {
-          "image": { 
-            "png": string,
-            "webp": string
-          },
-          "username": string
-        },
-        "replies": []
-  }){
+    "content": string,
+    "createdAt": string,
+    "score": number,
+    "user": {
+      "image": {
+        "png": string,
+        "webp": string
+      },
+      "username": string
+    },
+    "replies": []
+  }) {
     this.data.comments.push(value)
+  }
+
+  addOne(comment: any) {
+    if (this.data.comments.includes(comment)) {
+      this.data.comments[comment.id - 1].score++;
+    }
+    else {
+      comment.score++;
+    }
+  }
+
+  minusOne(comment: any) {
+    if (this.data.comments.includes(comment)) {
+      if (this.data.comments[comment.id - 1].score > 0)
+        this.data.comments[comment.id - 1].score--;
+    }
+    else{
+      if (comment.score > 0)
+        comment.score--;
+    }
   }
 
 }
