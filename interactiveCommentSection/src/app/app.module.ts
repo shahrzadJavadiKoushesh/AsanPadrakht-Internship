@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReplyComponent } from './reply/reply.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddCommentComponent,
     ReplyComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
