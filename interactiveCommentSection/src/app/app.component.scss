@@ -68,10 +68,47 @@
     .reply {
         margin-left: 40px;
         margin-bottom: 10px;
-        
 
         .reply-header {
             display: flex;
+            .comment-right-part {
+                width: 100%;
+                .top {
+                    display: flex;
+                    justify-content: space-between;
+                    // background-color: red;
+                    padding: 10px;
+
+                    .comment-user-info {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        width: 30%;
+
+                        // background-color: blue;
+                        .comment-created-at {
+                            color: #ccc6c6;
+                        }
+                    }
+
+                    .reply-icon {
+                        color: #6e49e6;
+                        padding: 10px;
+                    }
+
+                    .reply-icon:hover {
+                        cursor: pointer;
+                        opacity: 0.8;
+                    }
+                }
+
+                .comment-content {
+                    width: 80%;
+                    margin-left: 40px;
+                }
+            }
+
+
         }
 
         .reply-user-info {

@@ -86,8 +86,8 @@ export class AppComponent {
     this.data = updatedData;
   }
 
-  addReply(){
-    console.log("reply clicked");
+  addReply(i: number){
+    console.log(`reply for comment ${i} is clicked`);
     this.showReply = !this.showReply;
   }
 }

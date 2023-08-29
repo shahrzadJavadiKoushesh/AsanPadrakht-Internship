@@ -11,10 +11,6 @@ export class ReplyComponent {
   @Input() data: any;
   @Output() replyAdded = new EventEmitter<any>(); 
 
-  @Input() showReply!: boolean;
-  @Output() showReplyChanges = new EventEmitter<boolean>(); 
-
-
   constructor(private fb: FormBuilder) { }
 
   replyInput = this.fb.group({
@@ -42,9 +38,7 @@ export class ReplyComponent {
     console.log(newReply);
     this.data.comments[0].replies.push(newReply);
     console.log(this.data)
-    this.showReply = false;
     this.replyAdded.emit(this.data);
-    this.showReplyChanges.emit(this.showReply)
     this.replyInput.reset();
     
   }
