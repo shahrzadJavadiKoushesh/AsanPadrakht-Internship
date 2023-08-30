@@ -10,6 +10,7 @@ export class AppComponent {
 
   showReply: boolean = false;
   selectedComment: Record<string, any> = {};
+  
 
   data = {
     "currentUser": {
@@ -80,6 +81,8 @@ export class AppComponent {
     ]
   }
 
+  filteredComments: any[] = this.data.comments;
+
   addReply(comment: any) {
     this.selectedComment = comment;
     this.showReply = true;
@@ -106,7 +109,7 @@ export class AppComponent {
     },
     "replies": []
   }) {
-    this.data.comments.push(value)
+    this.filteredComments.push(value)
   }
 
   changeScroe(comment: any, isPlus: boolean){
@@ -116,6 +119,20 @@ export class AppComponent {
     else{
       if (comment.score > 0)
         comment.score--
+    }
+  }
+
+
+  filterByUserOrContent(query: string, isUsername:boolean) {
+    if (isUsername){
+      this.filteredComments = this.data.comments.filter(comment => 
+        comment.user.username.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+    else{
+      this.filteredComments = this.data.comments.filter(comment => 
+        comment.content.toLowerCase().includes(query.toLowerCase())
+      );
     }
   }
 

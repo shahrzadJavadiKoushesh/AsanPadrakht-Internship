@@ -1,9 +1,9 @@
 <div class="comments">
     <div class="search-bar">
-        <app-search [placeholder]="'Search by username'"></app-search>
-        <app-search [placeholder]="'Search by comment'"></app-search>
+        <app-search [placeholder]="'Search by username'" (searchQuery)="filterByUserOrContent($event, true)"></app-search>
+        <app-search [placeholder]="'Search by comment'" (searchQuery)="filterByUserOrContent($event, false)"></app-search>
     </div>
-    <div *ngFor="let comment of data.comments;" class="comment">
+    <div *ngFor="let comment of filteredComments;" class="comment">
         <div class="comment-header">
             <div class="comment-score">
                 <img src="../assets/images/icon-plus.svg" alt="" (click)="changeScroe(comment, true)" class="plusOne">

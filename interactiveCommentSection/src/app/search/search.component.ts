@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -8,5 +8,12 @@ import { Component, Input } from '@angular/core';
 export class SearchComponent {
 
   @Input() placeholder!: string;
+  @Output() searchQuery = new EventEmitter<string>();
+  query: string = '';
+  
+  onQueryChange() {
+    this.searchQuery.emit(this.query);
+  }
+
 
 }
