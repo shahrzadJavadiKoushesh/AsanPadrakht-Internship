@@ -126,12 +126,12 @@ export class AppComponent {
   filterByUserOrContent(query: string, isUsername:boolean) {
     if (isUsername){
       this.filteredComments = this.data.comments.filter(comment => 
-        comment.user.username.toLowerCase().includes(query.toLowerCase())
+        comment.user.username.toLowerCase().includes(query.toLowerCase()) || comment.replies.some(reply => reply.user.username.toLowerCase().includes(query.toLowerCase()))
       );
     }
     else{
       this.filteredComments = this.data.comments.filter(comment => 
-        comment.content.toLowerCase().includes(query.toLowerCase())
+        comment.content.toLowerCase().includes(query.toLowerCase()) || comment.replies.some(reply => reply.content.toLowerCase().includes(query.toLowerCase()))
       );
     }
   }
