@@ -152,17 +152,49 @@ export class AppComponent {
   }
 
 
-  filterByUserOrContent(query: string, isUsername:boolean) {
-    if (isUsername){
-      this.filteredComments = this.data.comments.filter(comment => 
-        comment.user.username.toLowerCase().includes(query.toLowerCase()) || comment.replies.some(reply => reply.user.username.toLowerCase().includes(query.toLowerCase()))
-      );
-    }
-    else{
-      this.filteredComments = this.data.comments.filter(comment => 
-        comment.content.toLowerCase().includes(query.toLowerCase()) || comment.replies.some(reply => reply.content.toLowerCase().includes(query.toLowerCase()))
-      );
+  filterByUserOrContent(query: string, isUsername: boolean) {
+    if (query.trim() === '') {
+      // Reset to the original comments array when the query is empty
+      this.filteredComments = [...this.data.comments];
+    } else {
+      if (isUsername) {
+    
+        this.filteredComments = this.data.comments.filter(comment => 
+          comment.user.username.toLowerCase().includes(query.toLowerCase())
+        );
+  
+        // Filter replies based on the search query and matching main comments
+        const filteredReplies: any[] = [];
+  
+        this.data.comments.forEach(comment => {
+          const matchingReplies = comment.replies.filter(reply => 
+            reply.user.username.toLowerCase().includes(query.toLowerCase())
+          );
+  
+          if (matchingReplies.length > 0) {
+            filteredReplies.push({
+              ...comment,
+              replies: matchingReplies,
+            });
+          }
+        });
+  
+        // Combine the filtered main comments and replies
+        this.filteredComments = [...this.filteredComments, ...filteredReplies];
+      } else {
+        // Filter both main comments and replies based on the search query
+        this.filteredComments = this.data.comments.filter(comment => 
+          comment.content.toLowerCase().includes(query.toLowerCase())
+        ).map(comment => ({
+          ...comment,
+          replies: comment.replies.filter(reply => 
+            reply.content.toLowerCase().includes(query.toLowerCase())
+          ),
+        }));
+      }
     }
   }
-
+  
+  
+  
 }
