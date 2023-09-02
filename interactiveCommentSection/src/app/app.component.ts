@@ -151,50 +151,47 @@ export class AppComponent {
     }
   }
 
-
   filterByUserOrContent(query: string, isUsername: boolean) {
     if (query.trim() === '') {
       // Reset to the original comments array when the query is empty
       this.filteredComments = [...this.data.comments];
     } else {
       if (isUsername) {
-    
+
         this.filteredComments = this.data.comments.filter(comment => 
           comment.user.username.toLowerCase().includes(query.toLowerCase())
         );
-  
-        // Filter replies based on the search query and matching main comments
+        
         const filteredReplies: any[] = [];
-  
+        
         this.data.comments.forEach(comment => {
-          const matchingReplies = comment.replies.filter(reply => 
+          const matchingReply = comment.replies.find(reply => 
             reply.user.username.toLowerCase().includes(query.toLowerCase())
           );
-  
-          if (matchingReplies.length > 0) {
-            filteredReplies.push({
-              ...comment,
-              replies: matchingReplies,
-            });
+          
+          if (matchingReply) {
+            filteredReplies.push(
+              ...[{
+                ...comment,
+                replies: [matchingReply],
+              }]
+            );
           }
         });
-  
-        // Combine the filtered main comments and replies
+      
         this.filteredComments = [...this.filteredComments, ...filteredReplies];
       } else {
-        // Filter both main comments and replies based on the search query
-        this.filteredComments = this.data.comments.filter(comment => 
-          comment.content.toLowerCase().includes(query.toLowerCase())
-        ).map(comment => ({
+        this.filteredComments = this.data.comments.map(comment => ({
           ...comment,
           replies: comment.replies.filter(reply => 
             reply.content.toLowerCase().includes(query.toLowerCase())
           ),
-        }));
+        })).filter(comment => 
+          comment.content.toLowerCase().includes(query.toLowerCase()) ||
+          comment.replies.length > 0
+        );
       }
     }
   }
-  
-  
   
 }
