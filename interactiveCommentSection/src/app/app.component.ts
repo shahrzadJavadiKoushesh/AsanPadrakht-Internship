@@ -75,8 +75,37 @@ export class AppComponent {
               },
               "username": "juliusomo"
             }
-          }
+          },
+          {
+            "id": 5,
+            "content": "Wow, this React app's user interface is so responsive and sleek, making for an amazing user experience!",
+            "createdAt": "1 day ago",
+            "score": 2,
+            "replyingTo": "ramsesmiron",
+            "user": {
+              "image": {
+                "png": "./images/avatars/image-juliusomo.png",
+                "webp": "../assets/images/avatars/image-amyrobson.webp"
+              },
+              "username": "amyrobson"
+            }
+          },
+
         ]
+      },
+      {
+        "id": 3,
+        "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+        "createdAt": "1 week ago",
+        "score": 0,
+        "user": {
+          "image": {
+            "png": "./images/avatars/image-amyrobson.png",
+            "webp": "../assets/images/avatars/image-ramsesmiron.webp"
+          },
+          "username": "ramsesmiron"
+        },
+        "replies": []
       },
     ]
   }
