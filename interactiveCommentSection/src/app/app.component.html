@@ -3,6 +3,7 @@
         <app-search [placeholder]="'Search by username'" (searchQuery)="filterByUserOrContent($event, true)"></app-search>
         <app-search [placeholder]="'Search by comment'" (searchQuery)="filterByUserOrContent($event, false)"></app-search>
     </div>
+    <app-not-found [visible]="filteredComments.length <= 0"></app-not-found>
     <div *ngFor="let comment of filteredComments;" class="comment">
         <div class="comment-header">
             <div class="comment-score">
