@@ -10,7 +10,7 @@ export class AppComponent {
 
   showReply: boolean = false;
   selectedComment: Record<string, any> = {};
-  
+
 
   data = {
     "currentUser": {
@@ -90,6 +90,20 @@ export class AppComponent {
               "username": "amyrobson"
             }
           },
+          {
+            "id": 6,
+            "content": "viverra fermentum metus elementum, ornare",
+            "createdAt": "1 month ago",
+            "score": 0,
+            "replyingTo": "ramsesmiron",
+            "user": {
+              "image": {
+                "png": "./images/avatars/image-juliusomo.png",
+                "webp": "../assets/images/avatars/image-juliusomo.webp"
+              },
+              "username": "juliusomo"
+            }
+          }
 
         ]
       },
@@ -100,7 +114,7 @@ export class AppComponent {
         "score": 0,
         "user": {
           "image": {
-            "png": "./images/avatars/image-amyrobson.png",
+            "png": "../assets/images/avatars/image-ramsesmiron.png",
             "webp": "../assets/images/avatars/image-ramsesmiron.webp"
           },
           "username": "ramsesmiron"
@@ -110,7 +124,7 @@ export class AppComponent {
     ]
   }
 
-  filteredComments: any[] = this.data.comments;
+  filteredComments: any[] =  JSON.parse(JSON.stringify(this.data.comments)) ;
 
   addReply(comment: any) {
     this.selectedComment = comment;
@@ -138,15 +152,16 @@ export class AppComponent {
     },
     "replies": []
   }) {
-    this.selectedComment = value
-    this.filteredComments.push(value)
+    this.data.comments.push(value)
+    this.filteredComments = JSON.parse(JSON.stringify(this.data.comments))
+    
   }
 
-  changeScroe(comment: any, isPlus: boolean){
-    if (isPlus){
+  changeScroe(comment: any, isPlus: boolean) {
+    if (isPlus) {
       comment.score++
     }
-    else{
+    else {
       if (comment.score > 0)
         comment.score--
     }
@@ -155,44 +170,46 @@ export class AppComponent {
   filterByUserOrContent(query: string, isUsername: boolean) {
     if (query.trim() === '') {
       // Reset to the original comments array when the query is empty
-      this.filteredComments = [...this.data.comments];
+      this.filteredComments = JSON.parse(JSON.stringify(this.data.comments));
     } else {
       if (isUsername) {
 
-        this.filteredComments = this.data.comments.filter(comment => 
+        this.filteredComments = this.data.comments.filter(comment =>
           comment.user.username.toLowerCase().includes(query.toLowerCase())
         );
-        
+
         const filteredReplies: any[] = [];
-        
+
         this.data.comments.forEach(comment => {
-          const matchingReply = comment.replies.find(reply => 
-            reply.user.username.toLowerCase().includes(query.toLowerCase())
-          );
-          
-          if (matchingReply) {
-            filteredReplies.push(
-              ...[{
-                ...comment,
-                replies: [matchingReply],
-              }]
+          if (comment.replies.length > 0) {
+            const matchingReply = comment.replies.filter(reply =>
+              reply.user.username.toLowerCase().includes(query.toLowerCase())
             );
+            if (matchingReply.length != 0) {
+              console.log("FGHJK")
+              filteredReplies.push(
+                ...[{
+                  ...comment,
+                  replies: matchingReply,
+                }]
+              );
+            }
           }
         });
-      
+
         this.filteredComments = [...this.filteredComments, ...filteredReplies];
+
       } else {
         this.filteredComments = this.data.comments.map(comment => ({
           ...comment,
-          replies: comment.replies.filter(reply => 
+          replies: comment.replies.filter(reply =>
             reply.content.toLowerCase().includes(query.toLowerCase())
           ),
-        })).filter(comment => 
+        })).filter(comment =>
           comment.content.toLowerCase().includes(query.toLowerCase()) ||
           comment.replies.length > 0
         );
       }
     }
   }
-  
 }
