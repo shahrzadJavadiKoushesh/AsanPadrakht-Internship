@@ -138,6 +138,7 @@ export class AppComponent {
     },
     "replies": []
   }) {
+    this.selectedComment = value
     this.filteredComments.push(value)
   }
 
