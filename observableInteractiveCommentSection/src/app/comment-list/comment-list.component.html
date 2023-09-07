@@ -1,0 +1,12 @@
+<!-- comment-list.component.html -->
+
+<div *ngFor="let comment of comments">
+    <!-- Display comment details here -->
+    {{comment.score}}
+    {{comment.username}}
+    {{comment.user.image.webp}}
+    {{comment.createdAt}}
+    <p>Content: {{ comment.content }}</p>
+    <!-- Add more properties as needed -->
+  </div>
+  
