@@ -1,18 +1,26 @@
 <div *ngFor="let comment of comments">
-  {{comment.score}}
-  {{comment.user.username}}
-  <img [src]="comment.user.image.webp" alt="">
-  {{comment.createdAt}}
-  <p>{{ comment.content }}</p>
-  <!-- Add more properties as needed -->
-  <div *ngIf="comment.replies.length > 0">
-    <div *ngFor="let reply of comment.replies">
-      {{reply.score}}
-      {{reply.user.username}}
-      <img [src]="reply.user.image.webp" alt="">
-      {{reply.createdAt}}
-      {{reply.content}}
-      <!-- <hr> -->
+  <div class="comment">
+    <div class="comment-score">
+      <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus">
+      {{comment.score}}
+      <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus">
+    </div>
+    <div class="right-part">
+      <div class="comment-header">
+        <img [src]="comment.user.image.webp" alt="">
+        {{comment.user.username}}
+        {{comment.createdAt}}
+      </div>
+      <p>{{ comment.content }}</p>
+      <div *ngIf="comment.replies.length > 0" class="reply">
+        <div *ngFor="let reply of comment.replies">
+          {{reply.score}}
+          {{reply.user.username}}
+          <img [src]="reply.user.image.webp" alt="">
+          {{reply.createdAt}}
+          {{reply.content}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
