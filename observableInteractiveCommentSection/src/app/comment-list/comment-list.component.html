@@ -7,9 +7,14 @@
     </div>
     <div class="right-part">
       <div class="comment-header">
-        <img [src]="comment.user.image.webp" alt="">
-        {{comment.user.username}}
-        {{comment.createdAt}}
+        <div class="user-info">
+          <img [src]="comment.user.image.webp" alt="">
+          <b>
+            {{comment.user.username}}
+          </b>
+          {{comment.createdAt}}
+        </div>
+        <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon">
       </div>
       <p>{{ comment.content }}</p>
       <div *ngIf="comment.replies.length > 0" class="reply">
