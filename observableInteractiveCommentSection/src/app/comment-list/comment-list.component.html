@@ -1,10 +1,18 @@
 <div *ngFor="let comment of comments">
-    <!-- Display comment details here -->
-    {{comment.score}}
-    {{comment.username}}
-    <img [src]="comment.user.image.webp" alt="">
-    {{comment.createdAt}}
-    <p>Content: {{ comment.content }}</p>
-    <!-- Add more properties as needed -->
+  {{comment.score}}
+  {{comment.user.username}}
+  <img [src]="comment.user.image.webp" alt="">
+  {{comment.createdAt}}
+  <p>Content: {{ comment.content }}</p>
+  <!-- Add more properties as needed -->
+  <div *ngIf="comment.replies.length > 0">
+    <div *ngFor="let reply of comment.replies">
+      {{reply.score}}
+      {{reply.user.username}}
+      <img [src]="reply.user.image.webp" alt="">
+      {{reply.createdAt}}
+      {{reply.content}}
+      <!-- <hr> -->
+    </div>
   </div>
-  
+</div>
