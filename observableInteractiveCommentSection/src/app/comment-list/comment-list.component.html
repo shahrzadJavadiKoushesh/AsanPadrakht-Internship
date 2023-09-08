@@ -3,7 +3,7 @@
   {{comment.user.username}}
   <img [src]="comment.user.image.webp" alt="">
   {{comment.createdAt}}
-  <p>Content: {{ comment.content }}</p>
+  <p>{{ comment.content }}</p>
   <!-- Add more properties as needed -->
   <div *ngIf="comment.replies.length > 0">
     <div *ngFor="let reply of comment.replies">
