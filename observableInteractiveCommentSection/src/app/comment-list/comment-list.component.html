@@ -1,9 +1,9 @@
 <div *ngFor="let comment of comments">
   <div class="comment">
     <div class="comment-score">
-      <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus">
+      <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus" (click)="changeScore(comment, true)">
       {{comment.score}}
-      <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus">
+      <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus" (click)="changeScore(comment, false)">
     </div>
     <div class="right-part">
       <div class="comment-header">
@@ -21,9 +21,9 @@
         <div *ngFor="let reply of comment.replies">
           <div class="comment reply">
             <div class="comment-score">
-              <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus">
+              <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus" (click)="changeScore(reply, true)">
               {{reply.score}}
-              <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus">
+              <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus" (click)="changeScore(reply, false)">
             </div>
 
             <div class="right-part">

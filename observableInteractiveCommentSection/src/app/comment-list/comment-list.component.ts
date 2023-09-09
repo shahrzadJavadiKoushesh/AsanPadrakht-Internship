@@ -16,4 +16,14 @@ export class CommentListComponent implements OnInit {
       this.comments = data.comments;
     });
   }
+
+  changeScore(comment: any, isPlus: boolean) {
+    if (isPlus) {
+      comment.score++;
+    } else {
+      if (comment.score > 0) {
+        comment.score--;
+      }
+    }
+  }
 }
