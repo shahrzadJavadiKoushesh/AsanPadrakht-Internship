@@ -7,6 +7,7 @@ import { CommentListComponent } from './comment-list/comment-list.component';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReplyComponent } from './reply/reply.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ReplyComponent } from './reply/reply.component';
     CommentListComponent,
     AddCommentComponent,
     ReplyComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

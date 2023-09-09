@@ -5,4 +5,12 @@
     align-items: center;
     background-color: #dee4e8af;
     border-radius: 10px;
+
+    .search-bar{
+        width: 50%;
+        margin-right: 230px;
+        // background-color: rebeccapurple;
+        display: flex;
+        justify-content: space-between;
+    }
 }
