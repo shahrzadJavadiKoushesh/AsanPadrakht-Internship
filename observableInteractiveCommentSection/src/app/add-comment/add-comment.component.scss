@@ -1,0 +1,27 @@
+.comment {
+    width: 1100px;
+    margin-right: 280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+
+    .input {
+        width: 900px;
+        height: 50px;
+        border-radius: 10px;
+        text-align: center;
+        outline: none;
+        border: none;
+    }
+
+    .send-btn {
+        width: 5%;
+        height: 40px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: rgb(62, 173, 62);
+        color: #fff;
+    }
+}
