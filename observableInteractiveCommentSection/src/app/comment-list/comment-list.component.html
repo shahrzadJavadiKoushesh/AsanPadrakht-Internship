@@ -12,12 +12,13 @@
           <b>
             {{comment.user.username}}
           </b>
-          {{comment.createdAt}}
+          <p class="createdAt">
+            {{comment.createdAt}}
+          </p>
         </div>
         <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon">
       </div>
       <p class="content">{{ comment.content }}</p>
-      <div *ngIf="comment.replies.length > 0">
         <div *ngFor="let reply of comment.replies">
           <div class="comment reply">
             <div class="comment-score">
@@ -33,7 +34,9 @@
                   <b>
                     {{reply.user.username}}
                   </b>
-                  {{reply.createdAt}}
+                  <p class="createdAt">
+                    {{reply.createdAt}}
+                  </p>
                 </div>
                 <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon">
               </div>
@@ -43,7 +46,6 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CommentService {
-  private commentsSubject = new BehaviorSubject<any>(null);
+  public commentsSubject = new BehaviorSubject<any>(null);
   comments$: Observable<any> = this.commentsSubject.asObservable();
 
   constructor() {
@@ -119,11 +119,12 @@ export class CommentService {
           "replies": []
         },
       ]
-  
     });
   }
 
-  updateComments(data: any) {
-    this.commentsSubject.next(data);
+  addComment(newComment: any){
+    const currentComments = this.commentsSubject.value;
+    currentComments.comments.push(newComment);
+    this.commentsSubject.next(currentComments);
   }
 }

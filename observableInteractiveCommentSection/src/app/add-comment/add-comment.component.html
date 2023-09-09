@@ -3,5 +3,5 @@
     <form [formGroup]="commentInput">
         <input type="text" placeholder="Add a comment ..." formControlName="comment" class="input">
     </form>
-    <button  [disabled]="!commentInput.valid" class="send-btn">SEND</button> 
+    <button  [disabled]="!commentInput.valid" class="send-btn" (click)="addComment()">SEND</button> 
 </div>

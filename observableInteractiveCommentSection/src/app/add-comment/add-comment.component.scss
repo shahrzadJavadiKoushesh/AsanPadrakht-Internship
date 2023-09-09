@@ -24,4 +24,8 @@
         background-color: rgb(62, 173, 62);
         color: #fff;
     }
+    .send-btn:disabled{
+        cursor: not-allowed;
+        background-color: #a5abb5;
+    }
 }
