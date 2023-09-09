@@ -5,6 +5,35 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CommentService {
+
+  showReply: boolean = false;
+  selectedComment!: {
+    "id": number,
+    "content":string | undefined | null,
+    "createdAt": string,
+    "score": number,
+    "user": {
+      "image": {
+        "png": string,
+        "webp": string
+      },
+      "username": string
+    },
+    "replies": [{
+      "id": number,
+      "content": string | undefined | null,
+      "createdAt": string,
+      "score": number,
+      "replyingTo": string,
+      "user": {
+        "image": {
+          "png": string,
+          "webp": string
+        },
+        "username": string
+      }
+    }]
+  }
   public commentsSubject = new BehaviorSubject<any>(null);
   comments$: Observable<any> = this.commentsSubject.asObservable();
 
@@ -123,8 +152,20 @@ export class CommentService {
   }
 
   addComment(newComment: any){
-    const currentComments = this.commentsSubject.value;
-    currentComments.comments.push(newComment);
-    this.commentsSubject.next(currentComments);
+    const lastComments = this.commentsSubject.value;
+    lastComments.comments.push(newComment);
+    this.commentsSubject.next(lastComments);
+  }
+
+  addReply() {
+    const lastComments = this.commentsSubject.value;
+
+    let editedComment = lastComments.comments.find( (item: any) => {
+      return item.id === this.selectedComment.id
+    });
+    if(editedComment) {
+      editedComment = this.selectedComment;
+    }
+    this.commentsSubject.next(lastComments);
   }
 }

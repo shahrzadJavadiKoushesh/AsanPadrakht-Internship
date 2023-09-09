@@ -1,7 +1,7 @@
 <div class="comment">
     <img src="../../assets/images/avatars/image-juliusomo.webp" alt="">
     <form [formGroup]="replyInput">
-        <input type="text" placeholder="Add a reply ..." formControlName="reply">
+        <input type="text" placeholder="Add a reply ..." formControlName="reply" class="input">
     </form>
-    <button [disabled]="!replyInput.valid">SEND</button>
+    <button [disabled]="!replyInput.valid" class="send-btn" (click)="sendReply()">SEND</button>
 </div>

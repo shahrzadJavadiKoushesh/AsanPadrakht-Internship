@@ -16,7 +16,7 @@
             {{comment.createdAt}}
           </p>
         </div>
-        <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply()">
+        <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply(comment)">
       </div>
       <p class="content">{{ comment.content }}</p>
         <div *ngFor="let reply of comment.replies">
@@ -38,7 +38,7 @@
                     {{reply.createdAt}}
                   </p>
                 </div>
-                <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply()">
+                <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply(comment)">
               </div>
               <p class="content">
                 {{reply.content}}
@@ -49,4 +49,4 @@
     </div>
   </div>
 </div>
-<app-reply *ngIf="showReply"></app-reply>
+<app-reply *ngIf="commentService.showReply"></app-reply>

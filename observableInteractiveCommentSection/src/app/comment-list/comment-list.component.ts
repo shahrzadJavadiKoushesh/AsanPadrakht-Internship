@@ -9,9 +9,7 @@ import { CommentService } from '../comment.service';
 export class CommentListComponent implements OnInit {
   comments: any;
 
-  showReply: boolean = false;
-
-  constructor(private commentService: CommentService) { }
+  constructor(public commentService: CommentService) { }
 
   ngOnInit(): void {
     this.commentService.comments$.subscribe((data) => {
@@ -29,8 +27,9 @@ export class CommentListComponent implements OnInit {
     }
   }
 
-  addReply(){
-    console.log("Reply clicked");
-    this.showReply = true;
+  addReply(comment: any) {
+    this.commentService.selectedComment = comment;
+    this.commentService.showReply = true;
+    console.log("selected comment: ", this.commentService.selectedComment)
   }
 }

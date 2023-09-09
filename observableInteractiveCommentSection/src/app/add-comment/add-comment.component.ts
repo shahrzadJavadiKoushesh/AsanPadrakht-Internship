@@ -26,7 +26,7 @@ export class AddCommentComponent {
       "id": Math.floor(Math.random() * (50 - 6 + 1)) + 6 ,
       "content": comment,
       "createdAt": "just now",
-      "score": Math.floor(Math.random() * (50 - 6 + 1)) + 6,
+      "score": Math.floor(Math.random() * (50 - 6 + 1)) + 100,
       "replyingTo": "ramsesmiron",
       "user": {
         "image": {
@@ -34,7 +34,8 @@ export class AddCommentComponent {
           "webp": "../assets/images/avatars/image-juliusomo.webp"
         },
         "username": "juliusomo"
-      }
+      },
+      "replies": []
     }
     console.log(this.commentService.commentsSubject.value)
     this.commentService.addComment(data);
