@@ -9,6 +9,8 @@ import { CommentService } from '../comment.service';
 export class CommentListComponent implements OnInit {
   comments: any;
 
+  showReply: boolean = false;
+
   constructor(private commentService: CommentService) { }
 
   ngOnInit(): void {
@@ -25,5 +27,10 @@ export class CommentListComponent implements OnInit {
         comment.score--;
       }
     }
+  }
+
+  addReply(){
+    console.log("Reply clicked");
+    this.showReply = true;
   }
 }

@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReplyComponent } from './reply/reply.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommentListComponent,
     AddCommentComponent,
+    ReplyComponent,
   ],
   imports: [
     BrowserModule,
