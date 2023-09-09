@@ -16,14 +16,33 @@
         </div>
         <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon">
       </div>
-      <p>{{ comment.content }}</p>
-      <div *ngIf="comment.replies.length > 0" class="reply">
+      <p class="content">{{ comment.content }}</p>
+      <div *ngIf="comment.replies.length > 0">
         <div *ngFor="let reply of comment.replies">
-          {{reply.score}}
-          {{reply.user.username}}
-          <img [src]="reply.user.image.webp" alt="">
-          {{reply.createdAt}}
-          {{reply.content}}
+          <div class="comment reply">
+            <div class="comment-score">
+              <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus">
+              {{reply.score}}
+              <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus">
+            </div>
+
+            <div class="right-part">
+              <div class="comment-header">
+                <div class="user-info">
+                  <img [src]="reply.user.image.webp" alt="">
+                  <b>
+                    {{reply.user.username}}
+                  </b>
+                  {{reply.createdAt}}
+                </div>
+                <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon">
+              </div>
+              <p class="content">
+                {{reply.content}}
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
