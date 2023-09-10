@@ -35,8 +35,6 @@ export class FilterPipe implements PipeTransform {
       });
 
       comment.replies = matchingReplies;
-      console.log("Comments", comments)
-      console.log("Copy", commentsCopy)
 
       return comment.replies.length > 0;
     });

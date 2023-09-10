@@ -2,7 +2,7 @@
   <app-search [placeholder]="'Search by Username'"></app-search>
   <app-search [placeholder]="'Search by Comment'"></app-search>
 </div>
-<div *ngFor="let comment of comments | filter: commentService.searchText: true">
+<div *ngFor="let comment of comments | filter: commentService.searchText: true ">
   <div class="comment">
     <div class="comment-score">
       <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus" (click)="changeScore(comment, true)">
