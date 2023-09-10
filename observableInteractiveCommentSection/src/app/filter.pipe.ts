@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-
   transform(comments: any[], searchText: string, isUsername: boolean): any[] {
     if (!comments || !searchText) {
       return comments;
@@ -12,7 +11,7 @@ export class FilterPipe implements PipeTransform {
 
     searchText = searchText.toLowerCase();
 
-    const commentsCopy = JSON.parse(JSON.stringify(comments));
+    let commentsCopy = JSON.parse(JSON.stringify(comments));
 
     return commentsCopy.filter((comment: any) => {
       if (isUsername) {
@@ -27,7 +26,6 @@ export class FilterPipe implements PipeTransform {
 
       const repliesCopy = JSON.parse(JSON.stringify(comment.replies));
 
-      // Filter and keep only the matching replies
       const matchingReplies = repliesCopy.filter((reply: any) => {
         if (isUsername) {
           return reply.user.username.toLowerCase().includes(searchText);
@@ -37,8 +35,10 @@ export class FilterPipe implements PipeTransform {
       });
 
       comment.replies = matchingReplies;
+      console.log("Comments", comments)
+      console.log("Copy", commentsCopy)
 
-      return comments.length > 0;
+      return comment.replies.length > 0;
     });
   }
 }
