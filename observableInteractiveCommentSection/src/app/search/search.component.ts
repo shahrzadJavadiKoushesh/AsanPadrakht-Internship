@@ -10,10 +10,5 @@ export class SearchComponent {
 
   @Input() placeholder!: string;
   constructor(public commnetService: CommentService){}
-  // @Output() searchText =  new EventEmitter<any>();
-
-  // onSearch(text: string) {
-  //   this.searchText.emit(text);
-  // }
 
 }
