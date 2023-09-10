@@ -134,7 +134,7 @@ export class CommentService {
           ]
         },
         {
-          "id": 1,
+          "id": 3,
           "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu lacinia dui. Suspendisse volutpat leo at ipsum porta malesuada. Mauris efficitur pellentesque dui,",
           "createdAt": "1 month ago",
           "score": 12,
@@ -144,6 +144,20 @@ export class CommentService {
               "webp": "../assets/images/avatars/image-amyrobson.webp"
             },
             "username": "amyrobson"
+          },
+          "replies": []
+        },
+        {
+          "id": 4,
+          "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
+          "createdAt": "1 week ago",
+          "score": 0,
+          "user": {
+            "image": {
+              "png": "../assets/images/avatars/image-ramsesmiron.png",
+              "webp": "../assets/images/avatars/image-ramsesmiron.webp"
+            },
+            "username": "ramsesmiron"
           },
           "replies": []
         },
