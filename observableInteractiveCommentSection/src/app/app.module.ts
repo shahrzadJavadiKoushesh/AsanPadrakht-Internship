@@ -10,6 +10,7 @@ import { ReplyComponent } from './reply/reply.component';
 import { SearchComponent } from './search/search.component';
 import { FilterPipe } from './filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     ReplyComponent,
     SearchComponent,
     FilterPipe,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
