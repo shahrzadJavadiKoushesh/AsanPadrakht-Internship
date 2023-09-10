@@ -9,10 +9,12 @@ export class FilterPipe implements PipeTransform {
     if (!comments || !searchText) {
       return comments;
     }
-  
+
     searchText = searchText.toLowerCase();
-  
-    return comments.filter((comment) => {
+
+    const commentsCopy = JSON.parse(JSON.stringify(comments));
+
+    return commentsCopy.filter((comment: any) => {
       if (isUsername) {
         if (comment.user.username.toLowerCase().includes(searchText)) {
           return true;
@@ -22,23 +24,21 @@ export class FilterPipe implements PipeTransform {
           return true;
         }
       }
-      const initialReplies = [...comment.replies]
+
+      const repliesCopy = JSON.parse(JSON.stringify(comment.replies));
+
       // Filter and keep only the matching replies
-      const matchingReplies = comment.replies.filter((reply: any) => {
+      const matchingReplies = repliesCopy.filter((reply: any) => {
         if (isUsername) {
           return reply.user.username.toLowerCase().includes(searchText);
         } else {
           return reply.content.toLowerCase().includes(searchText);
         }
       });
-  
+
       comment.replies = matchingReplies;
-      if (searchText.trim() === ''){
-        comment.replies = [...initialReplies]
-      }
-      return comment.replies.length > 0;
+
+      return comments.length > 0;
     });
   }
-  
-  
 }

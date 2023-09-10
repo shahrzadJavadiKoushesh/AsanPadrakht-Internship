@@ -131,20 +131,19 @@ export class CommentService {
                 "username": "juliusomo"
               }
             }
-  
           ]
         },
         {
-          "id": 3,
-          "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,",
-          "createdAt": "1 week ago",
-          "score": 0,
+          "id": 1,
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu lacinia dui. Suspendisse volutpat leo at ipsum porta malesuada. Mauris efficitur pellentesque dui,",
+          "createdAt": "1 month ago",
+          "score": 12,
           "user": {
             "image": {
-              "png": "../assets/images/avatars/image-ramsesmiron.png",
-              "webp": "../assets/images/avatars/image-ramsesmiron.webp"
+              "png": "./images/avatars/image-amyrobson.png",
+              "webp": "../assets/images/avatars/image-amyrobson.webp"
             },
-            "username": "ramsesmiron"
+            "username": "amyrobson"
           },
           "replies": []
         },
