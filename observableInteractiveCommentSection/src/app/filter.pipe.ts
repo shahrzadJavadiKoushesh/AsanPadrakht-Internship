@@ -9,26 +9,36 @@ export class FilterPipe implements PipeTransform {
     if (!comments || !searchText) {
       return comments;
     }
-
+  
     searchText = searchText.toLowerCase();
-
+  
     return comments.filter((comment) => {
-      if (isUsername){
-        if (comment.user.username.toLowerCase().includes(searchText)){
-          return true
-        }
-        if (comment.replies.length > 0){
-          if (comment.replies.some((reply: any) => reply.user.username.toLowerCase().includes(searchText))) {
-            return true;
-          }
+      if (isUsername) {
+        if (comment.user.username.toLowerCase().includes(searchText)) {
+          return true;
         }
       } else {
-        return (
-          comment.content.toLowerCase().includes(searchText)
-        );
+        if (comment.content.toLowerCase().includes(searchText)) {
+          return true;
+        }
       }
+      const initialReplies = [...comment.replies]
+      // Filter and keep only the matching replies
+      const matchingReplies = comment.replies.filter((reply: any) => {
+        if (isUsername) {
+          return reply.user.username.toLowerCase().includes(searchText);
+        } else {
+          return reply.content.toLowerCase().includes(searchText);
+        }
+      });
+  
+      comment.replies = matchingReplies;
+      if (searchText.trim() === ''){
+        comment.replies = [...initialReplies]
+      }
+      return comment.replies.length > 0;
     });
   }
+  
+  
 }
-
-
