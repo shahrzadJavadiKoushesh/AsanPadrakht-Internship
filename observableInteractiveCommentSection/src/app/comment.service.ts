@@ -8,6 +8,7 @@ export class CommentService {
 
   showReply: boolean = false;
   searchText: string = '';
+  notFoundVisible: boolean = false;
   selectedComment!: {
     "id": number,
     "content":string | undefined | null,

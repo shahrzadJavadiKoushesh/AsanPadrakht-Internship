@@ -1,9 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CommentService } from './comment.service';
 
 @Pipe({
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
+  constructor (public commentService: CommentService){}
   transform(comments: any[], searchText: string, isUsername: boolean): any[] {
     if (!comments || !searchText) {
       return comments;
@@ -18,9 +20,15 @@ export class FilterPipe implements PipeTransform {
         if (comment.user.username.toLowerCase().includes(searchText)) {
           return true;
         }
+        else{
+          this.commentService.notFoundVisible = true;
+        }
       } else {
         if (comment.content.toLowerCase().includes(searchText)) {
           return true;
+        }
+        else{
+          this.commentService.notFoundVisible = true;
         }
       }
 
@@ -35,8 +43,11 @@ export class FilterPipe implements PipeTransform {
       });
 
       comment.replies = matchingReplies;
-
-      return comment.replies.length > 0;
+      if (searchText.trim() === ''){
+        console.log("GHJKL")
+        this.commentService.notFoundVisible = false;
+      }
+      return comment.replies.length > 0 && this.commentService.notFoundVisible;
     });
   }
 }

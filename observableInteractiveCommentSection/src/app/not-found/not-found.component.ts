@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-not-found',
@@ -7,7 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class NotFoundComponent {
 
-  @Input() visible: boolean = false;
   @Input() notFoundMessage: string = "Nothing Found!";
+
+  constructor(public commentService: CommentService){}
 
 }
