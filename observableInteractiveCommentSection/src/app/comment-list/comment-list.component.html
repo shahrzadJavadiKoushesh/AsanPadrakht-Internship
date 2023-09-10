@@ -1,4 +1,8 @@
-<div *ngFor="let comment of comments">
+<div class="search-bar">
+  <app-search [placeholder]="'Search by Username'"></app-search>
+  <app-search [placeholder]="'Search by Comment'"></app-search>
+</div>
+<div *ngFor="let comment of comments | filter: commentService.searchText: true">
   <div class="comment">
     <div class="comment-score">
       <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus" (click)="changeScore(comment, true)">
@@ -19,33 +23,33 @@
         <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply(comment)">
       </div>
       <p class="content">{{ comment.content }}</p>
-        <div *ngFor="let reply of comment.replies">
-          <div class="comment reply">
-            <div class="comment-score">
-              <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus" (click)="changeScore(reply, true)">
-              {{reply.score}}
-              <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus" (click)="changeScore(reply, false)">
-            </div>
+      <div *ngFor="let reply of comment.replies">
+        <div class="comment reply">
+          <div class="comment-score">
+            <img src="../../assets/images/icon-plus.svg" alt="plus" class="plus" (click)="changeScore(reply, true)">
+            {{reply.score}}
+            <img src="../../assets/images/icon-minus.svg" alt="minus" class="minus" (click)="changeScore(reply, false)">
+          </div>
 
-            <div class="right-part">
-              <div class="comment-header">
-                <div class="user-info">
-                  <img [src]="reply.user.image.webp" alt="">
-                  <b>
-                    {{reply.user.username}}
-                  </b>
-                  <p class="createdAt">
-                    {{reply.createdAt}}
-                  </p>
-                </div>
-                <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply(comment)">
+          <div class="right-part">
+            <div class="comment-header">
+              <div class="user-info">
+                <img [src]="reply.user.image.webp" alt="">
+                <b>
+                  {{reply.user.username}}
+                </b>
+                <p class="createdAt">
+                  {{reply.createdAt}}
+                </p>
               </div>
-              <p class="content">
-                {{reply.content}}
-              </p>
+              <img src="../../assets/images/icon-reply.svg" alt="reply" class="reply-icon" (click)="addReply(comment)">
             </div>
+            <p class="content">
+              {{reply.content}}
+            </p>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

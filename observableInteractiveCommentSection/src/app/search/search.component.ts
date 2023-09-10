@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-search',
@@ -8,12 +9,11 @@ import { Component, Input, Output, EventEmitter} from '@angular/core';
 export class SearchComponent {
 
   @Input() placeholder!: string;
-  @Output() searchQuery = new EventEmitter<string>();
-  query: string = '';
-  
-  onQueryChange() {
-    this.searchQuery.emit(this.query);
-  }
+  constructor(public commnetService: CommentService){}
+  // @Output() searchText =  new EventEmitter<any>();
 
+  // onSearch(text: string) {
+  //   this.searchText.emit(text);
+  // }
 
 }

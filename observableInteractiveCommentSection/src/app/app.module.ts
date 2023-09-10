@@ -8,6 +8,8 @@ import { AddCommentComponent } from './add-comment/add-comment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReplyComponent } from './reply/reply.component';
 import { SearchComponent } from './search/search.component';
+import { FilterPipe } from './filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { SearchComponent } from './search/search.component';
     AddCommentComponent,
     ReplyComponent,
     SearchComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

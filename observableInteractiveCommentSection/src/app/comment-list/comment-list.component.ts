@@ -7,6 +7,7 @@ import { CommentService } from '../comment.service';
   styleUrls: ['./comment-list.component.scss']
 })
 export class CommentListComponent implements OnInit {
+  
   comments: any;
 
   constructor(public commentService: CommentService) { }

@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class CommentService {
 
   showReply: boolean = false;
+  searchText: string = '';
   selectedComment!: {
     "id": number,
     "content":string | undefined | null,
