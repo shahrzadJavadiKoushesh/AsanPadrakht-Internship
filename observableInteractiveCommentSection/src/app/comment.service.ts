@@ -183,13 +183,4 @@ export class CommentService {
     }
     this.commentsSubject.next(lastComments);
   }
-
-  // updateNotFoundVisible() {
-  //   this.notFoundVisible = !!this.searchText;
-  // }
-
-  // setSearchText(searchText: string) {
-  //   this.searchText = searchText;
-  //   this.updateNotFoundVisible();
-  // }
 }
