@@ -10,6 +10,8 @@ export class CommentListComponent implements OnInit {
   
   comments: any;
 
+  radioValue : string = '';
+
   constructor(public commentService: CommentService) { }
 
   ngOnInit(): void {
@@ -32,5 +34,12 @@ export class CommentListComponent implements OnInit {
     this.commentService.selectedComment = comment;
     this.commentService.showReply = true;
     console.log("selected comment: ", this.commentService.selectedComment)
+  }
+
+  checkStatus(event:any){
+  if (event.target.checked == true){
+     this.radioValue = event.target.value;
+    console.log(this.radioValue+ ' is Selected');
+  }
   }
 }
