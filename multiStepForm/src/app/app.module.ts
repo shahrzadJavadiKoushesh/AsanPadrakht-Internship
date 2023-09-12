@@ -8,7 +8,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
-
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import {MatSelectModule} from '@angular/material/select';
+  
 @NgModule({
   declarations: [
     AppComponent
@@ -17,11 +20,14 @@ import {MatListModule} from '@angular/material/list';
     BrowserModule,
     BrowserAnimationsModule,
     MatStepperModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
