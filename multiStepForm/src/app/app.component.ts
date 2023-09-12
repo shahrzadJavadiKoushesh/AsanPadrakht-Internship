@@ -18,12 +18,19 @@ export class AppComponent {
   isLinear = true;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
+  thirdFormGroup!: FormGroup;
 
-  options: Option[] = [
+  Soptions: Option[] = [
     {value: 'arcade-0', viewValue: 'Arcade'},
     {value: 'advanced-1', viewValue: 'Advanced'},
     {value: 'pro-2', viewValue: 'Pro'},
   ];
+
+  Toptions: Option[] = [
+    {value: 'onlineservice-0', viewValue: 'Online Service'},
+    {value: 'largerstorage-1', viewValue: 'Larger Storage'},
+    {value: 'customizableprofile', viewValue: 'Customizable Profile'},
+  ]
   
   constructor(private _formBuilder: FormBuilder) {}
   

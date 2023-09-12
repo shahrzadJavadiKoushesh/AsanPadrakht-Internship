@@ -27,7 +27,7 @@
     <ng-template matStepLabel>Select Your Plan</ng-template>
     <mat-form-field>
         <mat-select>
-            <mat-option *ngFor="let option of options" [value]="option.value">
+            <mat-option *ngFor="let option of Soptions" [value]="option.value">
               {{option.viewValue}}
             </mat-option>
           </mat-select>
@@ -36,6 +36,21 @@
         <button mat-button matStepperNext>Next</button>
       </div>
   </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <ng-template matStepLabel>Pick add-ons</ng-template>
+    <mat-form-field>
+        <mat-select>
+            <mat-option *ngFor="let option of Toptions" [value]="option.value">
+              {{option.viewValue}}
+            </mat-option>
+          </mat-select>
+    </mat-form-field>
+    <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
