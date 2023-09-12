@@ -11,6 +11,7 @@ import {MatListModule} from '@angular/material/list';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
   
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserAnimationsModule,
     MatStepperModule,
     MatSelectModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
