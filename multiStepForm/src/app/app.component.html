@@ -1,5 +1,3 @@
-<header></header>
-
 <mat-vertical-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
 
@@ -29,7 +27,7 @@
     <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Select Your Plan</ng-template>
         
-            <mat-radio-group class="options" >
+            <mat-radio-group class="options" formControlName="plan">
                 <mat-radio-button value="arcade">Arcade</mat-radio-button>
                 <mat-radio-button value="advanced">Advanced</mat-radio-button>
                 <mat-radio-button value="pro">Pro</mat-radio-button>
@@ -40,12 +38,12 @@
         </div>
     </mat-step>
 
-    <mat-step [stepControl]="thirdFormGroup">
+    <mat-step [stepControl]="thirdFormGroup" formControlName="addons">
         <ng-template matStepLabel>Pick add-ons</ng-template>
         <mat-radio-group class="options">
-            <mat-radio-button value="arcade">Arcade</mat-radio-button>
-            <mat-radio-button value="advanced">Advanced</mat-radio-button>
-            <mat-radio-button value="pro">Pro</mat-radio-button>
+            <mat-radio-button value="onlineService">Online Service</mat-radio-button>
+            <mat-radio-button value="largeStorage">Large Storage</mat-radio-button>
+            <mat-radio-button value="customizableProfile">Customizable Profile</mat-radio-button>
         </mat-radio-group>
         <div>
             <button mat-button matStepperNext>Next</button>
