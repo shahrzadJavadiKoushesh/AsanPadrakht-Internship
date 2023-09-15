@@ -37,39 +37,36 @@ export class AppComponent {
 
   ngOnInit() {
     this.firstFormGroup = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required]
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.required]
     });
 
-    
     this.secondFormGroup = this.fb.group({
-      plan: ['arcade', Validators.required],
+        plan: ['', Validators.required],
     });
 
     this.thirdFormGroup = this.fb.group({
-      addons: ['onlineservice']
+        addons: ['', Validators.required]
     });
 
-  
     this.finalFormGroup = this.fb.group({
-      name: [''],
-      email: [''],
-      phone: [''],
-      plan: [''],
-      addons: ['']
+        name: [''],
+        email: [''],
+        phone: [''],
+        plan: [''],
+        addons: ['']
     });
-  }
+}
+
 
   mergeData(): void {
-
     this.finalFormGroup.patchValue({
       name: this.firstFormGroup.value.name,
       email: this.firstFormGroup.value.email,
       phone: this.firstFormGroup.value.phone
     });
 
-  
     this.finalFormGroup.patchValue({
       plan: this.secondFormGroup.value.plan,
       addons: this.thirdFormGroup.value.addons
@@ -78,12 +75,7 @@ export class AppComponent {
   }
 
   submit() {
-
-  
     this.mergeData();
-
-  
     console.log(this.finalFormGroup.value);
-
   }
 }

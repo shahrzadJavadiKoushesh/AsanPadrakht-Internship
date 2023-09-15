@@ -1,23 +1,20 @@
 <mat-vertical-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
-
+        <ng-template matStepLabel>Personal Info</ng-template>
         <form [formGroup]="firstFormGroup">
-            <ng-template matStepLabel>Personal Info</ng-template>
             <mat-form-field>
                 <mat-label>Name</mat-label>
                 <input matInput placeholder="Name" formControlName="name" required>
             </mat-form-field>
-            <br />
+            <br>
             <mat-form-field>
                 <mat-label>Email Address</mat-label>
-                <textarea matInput placeholder="Email" formControlName="email" required>
-        </textarea>
+                <input matInput placeholder="Email" formControlName="email" required>
             </mat-form-field>
             <br>
             <mat-form-field>
                 <mat-label>Phone Number</mat-label>
-                <textarea matInput placeholder="phone number" formControlName="phone" required>
-        </textarea>
+                <input matInput placeholder="Phone Number" formControlName="phone" required>
             </mat-form-field>
             <div>
                 <button mat-button matStepperNext>Next</button>
@@ -26,30 +23,30 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
         <ng-template matStepLabel>Select Your Plan</ng-template>
-        
+        <form [formGroup]="secondFormGroup">
             <mat-radio-group class="options" formControlName="plan">
                 <mat-radio-button value="arcade">Arcade</mat-radio-button>
                 <mat-radio-button value="advanced">Advanced</mat-radio-button>
                 <mat-radio-button value="pro">Pro</mat-radio-button>
             </mat-radio-group>
-        
-        <div>
-            <button mat-button matStepperNext>Next</button>
-        </div>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
     </mat-step>
-
-    <mat-step [stepControl]="thirdFormGroup" formControlName="addons">
-        <ng-template matStepLabel>Pick add-ons</ng-template>
-        <mat-radio-group class="options">
-            <mat-radio-button value="onlineService">Online Service</mat-radio-button>
-            <mat-radio-button value="largeStorage">Large Storage</mat-radio-button>
-            <mat-radio-button value="customizableProfile">Customizable Profile</mat-radio-button>
-        </mat-radio-group>
-        <div>
-            <button mat-button matStepperNext>Next</button>
-        </div>
+    <mat-step [stepControl]="thirdFormGroup">
+        <ng-template matStepLabel>Pick Add-ons</ng-template>
+        <form [formGroup]="thirdFormGroup">
+            <mat-radio-group class="options" formControlName="addons">
+                <mat-radio-button value="onlineservice">Online Service</mat-radio-button>
+                <mat-radio-button value="largerstorage">Large Storage</mat-radio-button>
+                <mat-radio-button value="customizableprofile">Customizable Profile</mat-radio-button>
+            </mat-radio-group>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
     </mat-step>
-
     <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <p>You are now done.</p>
