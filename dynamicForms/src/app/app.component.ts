@@ -1,5 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormServiceService } from './form-service.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,17 @@ export class AppComponent implements OnInit{
 
   dynamicForm!: FormGroup;
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, public formService: FormServiceService){}
 
   ngOnInit(): void {
-    this.dynamicForm = this.fb.group({
+    const formStructure = this.formService.getFormStructure();
 
-    })
+    let formGroup : Record<string, string> = {};
+
+    formStructure.forEach(control => {
+      formGroup[control.label] = control.value;
+    });
+
+    this.dynamicForm = this.fb.group(formGroup);
   }
 }
