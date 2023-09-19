@@ -25,4 +25,8 @@ export class AppComponent implements OnInit{
 
     this.dynamicForm = this.fb.group(formGroup);
   }
+
+  onSubmit() {
+    console.log(this.dynamicForm.value);
+  }
 }

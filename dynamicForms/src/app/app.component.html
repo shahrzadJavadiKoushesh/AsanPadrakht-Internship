@@ -1,8 +1,9 @@
-<form [formGroup]="dynamicForm">
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
     <div *ngFor="let control of formService.getFormStructure()">
         <div *ngIf="control.hidden == 'false'">
             <label>{{control.label}}</label>
             <input [type]="control.type" [formControlName]="control.label">
         </div>
     </div>
+    <button type="submit">Submit</button>
 </form>
