@@ -28,7 +28,7 @@ export class FormServiceService {
       "field": "confirm",
       "label": "Checkbox with confirmation",
       "value": '',
-      "type": "check",
+      "type": "checkbox",
       "hidden": "false"
     },
     {
