@@ -14,7 +14,14 @@ export class FormServiceService {
       "type": "text",
       "hidden": "false",
       "value": '',
-      "mandatory": true
+      "mandatory": true,
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Name is required"
+        }
+      ]
     },
     {
       "field": "email",
@@ -22,7 +29,19 @@ export class FormServiceService {
       "type": "text",
       "hidden": "false",
       "value": '',
-      "mandatory": true
+      "mandatory": true,
+      "validations": [
+        {
+          "name": "required",
+          "validator": "required",
+          "message": "Email is required"
+        },
+        {
+          "name": "pattern",
+          "validator": "email",
+          "message": "Invalid email format"
+        }
+      ]
     },
     {
       "field": "confirm",

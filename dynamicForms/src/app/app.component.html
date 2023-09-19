@@ -1,8 +1,11 @@
 <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
     <div *ngFor="let control of formService.getFormStructure()">
         <div *ngIf="control.hidden == 'false'">
-            <label>{{control.label}}</label>
+            <label>{{control.label}}: </label>
             <input [type]="control.type" [formControlName]="control.field">
+            <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.touched">
+                {{getErrorMessage(control)}}
+              </span>
         </div>
     </div>
     <button type="submit">Submit</button>
