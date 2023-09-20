@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
         });
       }
 
-      console.log("Validators:", controlValidators)
       formGroup[control.field] = [control.value, controlValidators];
       
     });
@@ -45,15 +44,22 @@ export class AppComponent implements OnInit {
     console.log(this.dynamicForm.value);
   }
 
+  handleChange(event: any, type: string){
+    if (type === 'checkbox'){
+      console.log(event.target.checked)
+    }
+    else if(type === 'radio'){
+      console.log(event.target.value)
+    }
+    
+  }
+
   getErrorMessage(control: any) {
     const formControl = this.dynamicForm.get(control.field);
-    // console.log("DX: ", formControl)
 
     for (let validation of control.validations) {
 
       if (formControl!.hasError(validation.validator)) {
-        console.log(validation.validator)
-        console.log("entered if")
         return validation.message;
       }
     }
