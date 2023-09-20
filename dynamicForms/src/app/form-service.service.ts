@@ -57,7 +57,21 @@ export class FormServiceService {
       "value": '',
       "hidden": "true",
       "mandatory": false
-    }
+    },
+    {
+      "field": "range",
+      "label": "Size",
+      "type": "range",
+      "value": "",
+      "options": {
+        "min": "0",
+        "max": "100",
+        "step": "1",
+        "icon": "sunny"
+      },
+      "hidden": "false",
+      "validations": []
+    },
   ]
 
   getFormStructure() {
