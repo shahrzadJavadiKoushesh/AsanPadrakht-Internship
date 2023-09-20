@@ -3,7 +3,7 @@
 
         <div *ngIf="control.hidden == 'false'">
 
-            <ng-container *ngIf="control.type == 'checkbox'">
+            <ng-container *ngIf="control.type == 'checkbox'; else notCheckbox">
                 <label>{{control.label}}</label>
                 <input type="checkbox" [formControlName]="control.field" (change)="handleChange($event, 'checkbox')">
                 <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
@@ -11,21 +11,25 @@
                 </span>
             </ng-container>
 
-            <ng-container *ngIf="control.type == 'radio' ; else anything">
-                <label>{{control.label}}</label>
-                <input type="radio" [formControlName]="control.field" (change)="handleChange($event, 'radio')">
-                <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
-                    {{getErrorMessage(control)}}
-                </span>
-            </ng-container>
-
-            <ng-template #anything>
-                <label>{{control.label}}: </label>
-                <input [type]="control.type" [formControlName]="control.field">
-                <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
-                    {{getErrorMessage(control)}}
-                </span>
+            <ng-template #notCheckbox>
+                <ng-container *ngIf="control.type == 'radio' ; else anything">
+                    <label>{{control.label}}</label>
+                    <input type="radio" [formControlName]="control.field" (change)="handleChange($event, 'radio')">
+                    <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
+                        {{getErrorMessage(control)}}
+                    </span>
+                </ng-container>
+    
+                <ng-template #anything>
+                    <label>{{control.label}}: </label>
+                    <input [type]="control.type" [formControlName]="control.field">
+                    <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
+                        {{getErrorMessage(control)}}
+                    </span>
+                </ng-template>
             </ng-template>
+
+            
 
         </div>
     </div>

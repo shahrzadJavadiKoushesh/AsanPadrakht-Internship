@@ -89,7 +89,6 @@ export class FormServiceService {
   ]
 
   getFormStructure() {
-
     return this.formStructure;
   }
 }
