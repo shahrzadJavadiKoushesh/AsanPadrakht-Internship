@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   dynamicForm!: FormGroup;
 
+  isChecked: boolean = false;
+
   constructor(private fb: FormBuilder, public formService: FormServiceService) { }
 
   ngOnInit(): void {
@@ -45,13 +47,17 @@ export class AppComponent implements OnInit {
 
   getErrorMessage(control: any) {
     const formControl = this.dynamicForm.get(control.field);
-  ​
+    // console.log("DX: ", formControl)
+
     for (let validation of control.validations) {
-      if (formControl!.hasError(validation.field)) {
+
+      if (formControl!.hasError(validation.validator)) {
+        console.log(validation.validator)
+        console.log("entered if")
         return validation.message;
       }
     }
-  ​
+
     return '';
   }
 }

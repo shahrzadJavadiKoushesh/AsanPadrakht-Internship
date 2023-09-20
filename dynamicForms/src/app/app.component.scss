@@ -3,6 +3,14 @@ form{
     flex-direction: column;
     div{
         padding: 5px;
+        div{
+            input{
+                outline: none;
+            }
+            .error{
+                color: red;
+            }
+        }
     }
 
     button{

@@ -26,7 +26,7 @@ export class FormServiceService {
     {
       "field": "email",
       "label": "Email",
-      "type": "text",
+      "type": "email",
       "hidden": "false",
       "value": '',
       "mandatory": true,

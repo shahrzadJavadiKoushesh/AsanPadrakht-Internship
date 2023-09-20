@@ -3,9 +3,9 @@
         <div *ngIf="control.hidden == 'false'">
             <label>{{control.label}}: </label>
             <input [type]="control.type" [formControlName]="control.field">
-            <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.touched">
+            <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
                 {{getErrorMessage(control)}}
-              </span>
+            </span>
         </div>
     </div>
     <button type="submit">Submit</button>
