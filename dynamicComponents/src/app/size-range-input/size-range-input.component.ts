@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormServiceService } from '../form-service.service';
 
 @Component({
   selector: 'app-size-range-input',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./size-range-input.component.scss']
 })
 export class SizeRangeInputComponent {
+
+  constructor(public formService: FormServiceService){}
 
 }
