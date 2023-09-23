@@ -79,19 +79,20 @@ export class FormServiceService {
 
     {
       "field": "radiobutton",
-      "label": "radio button 1",
+      "label": "radio button",
       "type": "radio",
       "value": "radio 1",
       "hidden": "false",
-      "values": [
-        "test 1", 
-        "test 2"
-      ]
+    },
+
+    {
+      "field": "radiobutton",
+      "label": "radio button",
+      "type": "radio",
+      "value": "radio 2",
+      "hidden": "false",
     },
     
   ]
 
-  // getFormStructure() {
-  //   return this.formStructure;
-  // }
 }

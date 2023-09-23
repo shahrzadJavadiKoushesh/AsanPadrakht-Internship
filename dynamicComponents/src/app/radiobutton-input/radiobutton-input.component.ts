@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormServiceService } from '../form-service.service';
 
 @Component({
   selector: 'app-radiobutton-input',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class RadiobuttonInputComponent {
 
+  constructor (public formService: FormServiceService){}
 }
