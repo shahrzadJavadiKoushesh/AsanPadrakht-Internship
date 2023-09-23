@@ -5,6 +5,7 @@ import { EmailTextInputComponent } from './email-text-input/email-text-input.com
 import { NameTextInputComponent } from './name-text-input/name-text-input.component';
 import { RadiobuttonInputComponent } from './radiobutton-input/radiobutton-input.component';
 import { SizeRangeInputComponent } from './size-range-input/size-range-input.component';
+import { ButtonComponent } from './button/button.component';
 import { Type } from '@angular/core';
 
 interface ComponentMapping {
@@ -17,6 +18,7 @@ const componentMap: ComponentMapping = {
   'name-text-input': NameTextInputComponent,
   'radiobutton-input': RadiobuttonInputComponent,
   'size-range-input': SizeRangeInputComponent,
+  'button': ButtonComponent
 };
 
 @Component({
@@ -38,6 +40,7 @@ export class AppComponent implements OnInit{
       'name-text-input',
       'radiobutton-input',
       'size-range-input',
+      'button'
     ];
   
     for (const componentName of componentNames) {

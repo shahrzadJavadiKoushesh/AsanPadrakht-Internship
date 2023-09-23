@@ -8,6 +8,7 @@ import { EmailTextInputComponent } from './email-text-input/email-text-input.com
 import { ConfirmCheckboxInputComponent } from './confirm-checkbox-input/confirm-checkbox-input.component';
 import { SizeRangeInputComponent } from './size-range-input/size-range-input.component';
 import { RadiobuttonInputComponent } from './radiobutton-input/radiobutton-input.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RadiobuttonInputComponent } from './radiobutton-input/radiobutton-input
     EmailTextInputComponent,
     ConfirmCheckboxInputComponent,
     SizeRangeInputComponent,
-    RadiobuttonInputComponent
+    RadiobuttonInputComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
