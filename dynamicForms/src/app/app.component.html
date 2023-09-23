@@ -2,36 +2,41 @@
     <div *ngFor="let control of formService.getFormStructure()">
 
         <div *ngIf="control.hidden == 'false'">
-
             <ng-container *ngIf="control.type == 'checkbox'; else notCheckbox">
                 <label>{{control.label}}</label>
                 <input type="checkbox" [formControlName]="control.field" (change)="handleChange($event, 'checkbox')">
-                <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
+                <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty"
+                    class="error">
                     {{getErrorMessage(control)}}
                 </span>
             </ng-container>
 
             <ng-template #notCheckbox>
                 <ng-container *ngIf="control.type == 'radio' ; else anything">
-                    <label>{{control.label}}</label>
-                    <input type="radio" [formControlName]="control.field" (change)="handleChange($event, 'radio')">
-                    <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
-                        {{getErrorMessage(control)}}
-                    </span>
+
+                    <ng-container *ngFor="let value of control.values">
+                        <label>{{value}}</label>
+                        <input type="radio" [formControlName]="control.field" (change)="handleChange($event, 'radio')" [value]="value" [id]="value"  >
+                        <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty"
+                            class="error">
+                            {{getErrorMessage(control)}}
+                        </span>
+                    </ng-container>
+                    
                 </ng-container>
-    
+
                 <ng-template #anything>
                     <label>{{control.label}}: </label>
                     <input [type]="control.type" [formControlName]="control.field">
-                    <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty" class="error">
+                    <span *ngIf="dynamicForm.get(control.field)!.invalid && dynamicForm.get(control.field)!.dirty"
+                        class="error">
                         {{getErrorMessage(control)}}
                     </span>
+
                 </ng-template>
             </ng-template>
-
-            
-
         </div>
     </div>
     <button type="submit">Submit</button>
+    <p>{{dynamicForm.value | json}}</p>
 </form>

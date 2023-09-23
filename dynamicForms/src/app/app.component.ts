@@ -49,7 +49,8 @@ export class AppComponent implements OnInit {
       console.log(event.target.checked)
     }
     else if(type === 'radio'){
-      console.log(event.target.value)
+      // console.log(event.target.value)
+      console.log(event.target)
     }
     
   }
