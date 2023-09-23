@@ -26,13 +26,13 @@ const componentMap: ComponentMapping = {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'dynamicComponents';
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef
-  ) {}
+  ) { }
   ngOnInit() {
     const componentNames = [
       'confirm-checkbox-input',
@@ -42,26 +42,24 @@ export class AppComponent implements OnInit{
       'size-range-input',
       'button'
     ];
-  
+
     for (const componentName of componentNames) {
       // Get the component type from the mapping
       const componentType = componentMap[componentName];
-  
-      if (componentType) {
-        this.createComponent(componentType);
-      }
+
+      this.createComponent(componentType);
     }
   }
 
   createComponent(componentType: Type<any>) {
     // Use ComponentFactoryResolver to create a component factory
     const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-  
+
     // Create an instance of the component
     const componentRef = factory.create(this.viewContainerRef.parentInjector);
-  
+
     // Attach the component to the view container
     this.viewContainerRef.insert(componentRef.hostView);
-  
+
   }
 }
