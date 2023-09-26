@@ -5,8 +5,9 @@ import { EmailTextInputComponent } from './email-text-input/email-text-input.com
 import { NameTextInputComponent } from './name-text-input/name-text-input.component';
 import { RadiobuttonInputComponent } from './radiobutton-input/radiobutton-input.component';
 import { SizeRangeInputComponent } from './size-range-input/size-range-input.component';
-import { ButtonComponent } from './button/button.component';
 import { Type } from '@angular/core';
+import { FormServiceService } from './form-service.service';
+import { UserDataService } from './user-data.service';
 
 interface ComponentMapping {
   [key: string]: Type<any>;
@@ -18,7 +19,6 @@ const componentMap: ComponentMapping = {
   'name-text-input': NameTextInputComponent,
   'radiobutton-input': RadiobuttonInputComponent,
   'size-range-input': SizeRangeInputComponent,
-  'button': ButtonComponent
 };
 
 @Component({
@@ -28,10 +28,13 @@ const componentMap: ComponentMapping = {
 })
 export class AppComponent implements OnInit {
   title = 'dynamicComponents';
+  userData: any = {};
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private formService: FormServiceService, 
+    private userDataService: UserDataService
   ) { }
   ngOnInit() {
     const componentNames = [
@@ -40,11 +43,10 @@ export class AppComponent implements OnInit {
       'name-text-input',
       'radiobutton-input',
       'size-range-input',
-      'button'
     ];
 
     for (const componentName of componentNames) {
-      // Get the component type from the mapping
+      
       const componentType = componentMap[componentName];
 
       this.createComponent(componentType);
@@ -62,4 +64,14 @@ export class AppComponent implements OnInit {
     this.viewContainerRef.insert(componentRef.hostView);
 
   }
+
+  submitForm() {
+    this.formService.formStructure[0].value = this.userDataService.userName
+    this.userData.name = this.formService.formStructure[0].value;
+    
+    console.log('User Data:', this.userData);
+  
+    console.log('userName:', this.userData.name);
+  }
+  
 }

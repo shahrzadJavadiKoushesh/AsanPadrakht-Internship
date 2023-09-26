@@ -8,7 +8,7 @@ import { EmailTextInputComponent } from './email-text-input/email-text-input.com
 import { ConfirmCheckboxInputComponent } from './confirm-checkbox-input/confirm-checkbox-input.component';
 import { SizeRangeInputComponent } from './size-range-input/size-range-input.component';
 import { RadiobuttonInputComponent } from './radiobutton-input/radiobutton-input.component';
-import { ButtonComponent } from './button/button.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +18,11 @@ import { ButtonComponent } from './button/button.component';
     ConfirmCheckboxInputComponent,
     SizeRangeInputComponent,
     RadiobuttonInputComponent,
-    ButtonComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

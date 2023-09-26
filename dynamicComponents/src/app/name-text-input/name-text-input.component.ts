@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormServiceService } from '../form-service.service';
+import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-name-text-input',
@@ -8,6 +9,16 @@ import { FormServiceService } from '../form-service.service';
 })
 export class NameTextInputComponent {
 
-  constructor(public formService: FormServiceService){}
+  userName: string = '';
+
+  constructor(public formService: FormServiceService,public userDataServic: UserDataService){
+  
+  }
+
+  onUserNameChange() {
+    console.log('userName:', this.userName);
+  }
+
+  
 
 }

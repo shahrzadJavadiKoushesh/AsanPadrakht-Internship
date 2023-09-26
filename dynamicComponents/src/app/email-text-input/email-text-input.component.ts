@@ -7,6 +7,7 @@ import { FormServiceService } from '../form-service.service';
   styleUrls: ['./email-text-input.component.scss']
 })
 export class EmailTextInputComponent {
+  userEmail = ''
 
   constructor(public formService: FormServiceService){}
 
