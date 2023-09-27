@@ -10,68 +10,67 @@ import { FormServiceService } from './form-service.service';
 import { UserDataService } from './user-data.service';
 
 interface ComponentMapping {
-  [key: string]: Type<any>;
+  [key: string]: Type<any>
 }
-
-const componentMap: ComponentMapping = {
-  'confirm-checkbox-input': ConfirmCheckboxInputComponent,
-  'email-text-input': EmailTextInputComponent,
-  'name-text-input': NameTextInputComponent,
-  'radiobutton-input': RadiobuttonInputComponent,
-  'size-range-input': SizeRangeInputComponent,
-};
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   title = 'dynamicComponents';
   userData: any = {};
-
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
     private formService: FormServiceService, 
     private userDataService: UserDataService
   ) { }
+
+   componentMap: ComponentMapping = {
+    'confirm': ConfirmCheckboxInputComponent,
+    'email': EmailTextInputComponent,
+    'name': NameTextInputComponent,
+    'radiobutton': RadiobuttonInputComponent,
+    'range': SizeRangeInputComponent,
+  };
+  
   ngOnInit() {
     const componentNames = [
-      'confirm-checkbox-input',
-      'email-text-input',
-      'name-text-input',
-      'radiobutton-input',
-      'size-range-input',
+      this.formService.formStructure[2].field,
+      this.formService.formStructure[1].field,
+      this.formService.formStructure[0].field,
+      this.formService.formStructure[5].field,
+      this.formService.formStructure[4].field,
     ];
 
     for (const componentName of componentNames) {
-      
-      const componentType = componentMap[componentName];
-
-      this.createComponent(componentType);
+      const componentType = this.componentMap[componentName];
+      this.createComponent(componentType, componentName);
     }
   }
 
-  createComponent(componentType: Type<any>) {
-    // Use ComponentFactoryResolver to create a component factory
+  createComponent(componentType: Type<any>, fieldName: string) {
     const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-
-    // Create an instance of the component
     const componentRef = factory.create(this.viewContainerRef.parentInjector);
-
+  
+    console.log('Creating component for', fieldName);
+  
+    const instance = componentRef.instance;
+    instance.formStructure = this.formService.formStructure.find(item => item.field === fieldName);
+  
     // Attach the component to the view container
     this.viewContainerRef.insert(componentRef.hostView);
-
+  
+    instance.valueChange.subscribe((newValue: any) => {
+      this.userData[fieldName] = newValue;
+    });
   }
 
   submitForm() {
-    this.formService.formStructure[0].value = this.userDataService.userName
-    this.userData.name = this.formService.formStructure[0].value;
-    
     console.log('User Data:', this.userData);
-  
-    console.log('userName:', this.userData.name);
   }
   
 }
