@@ -7,7 +7,6 @@ import { RadiobuttonInputComponent } from './radiobutton-input/radiobutton-input
 import { SizeRangeInputComponent } from './size-range-input/size-range-input.component';
 import { Type } from '@angular/core';
 import { FormServiceService } from './form-service.service';
-import { UserDataService } from './user-data.service';
 
 interface ComponentMapping {
   [key: string]: Type<any>
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
     private formService: FormServiceService, 
-    private userDataService: UserDataService
   ) { }
 
    componentMap: ComponentMapping = {
