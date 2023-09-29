@@ -54,10 +54,10 @@ export class AppComponent implements OnInit {
   }
 
   createComponent(componentType: Type<any>) {
-    // Use ComponentFactoryResolver to create a component factory
+  
     const factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 
-    // Create an instance of the component
+    // instance of the component
     const componentRef = factory.create(this.viewContainerRef.parentInjector);
 
     // Attach the component to the view container

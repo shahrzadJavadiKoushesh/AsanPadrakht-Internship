@@ -18,7 +18,4 @@ export class NameTextInputComponent {
   onUserNameChange() {
     console.log('userName:', this.userName);
   }
-
-  
-
 }
