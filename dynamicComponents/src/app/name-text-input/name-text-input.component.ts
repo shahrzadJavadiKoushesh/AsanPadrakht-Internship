@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormServiceService } from '../form-service.service';
 import { UserDataService } from '../user-data.service';
 
@@ -11,11 +11,15 @@ export class NameTextInputComponent {
 
   userName: string = '';
 
+  @Input() value: string = '';
+
+  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(public formService: FormServiceService,public userDataServic: UserDataService){
   
   }
 
-  onUserNameChange() {
-    console.log('userName:', this.userName);
+  onValueChange(){
+    this.valueChange.emit(this.value)
   }
 }

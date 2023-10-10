@@ -1,4 +1,4 @@
 <p>
     <label>{{formService.formStructure[1].label}}  </label>
-    <input type="email" [(ngModel)]="userEmail">
+    <input type="email" [(ngModel)]="value" (change)="onValueChange()">
 </p>

@@ -1,7 +1,7 @@
 <form>
     <p>
         <label>{{ formService.formStructure[5].value }}</label>
-        <input type="radio" [value]="formService.formStructure[5].value" [id]="formService.formStructure[5].value" name="radioGroup">
+        <input type="radio" [value]="formService.formStructure[5].value" [id]="formService.formStructure[5].value" name="radioGroup" [(ngModel)]="value" (change)="onValueChange()">
     </p>
 
     <p>

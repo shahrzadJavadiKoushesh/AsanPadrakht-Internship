@@ -1,2 +1,2 @@
 <label>{{formService.formStructure[2].label}}</label>
-<input type="checkbox">
+<input type="checkbox" [(ngModel)]="value" (change)="onValueChange()">
